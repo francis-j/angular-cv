@@ -1,0 +1,20 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.min.css";
+
+html {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+h3 {
+    margin: auto 0 auto 0;
+    display: inline-block;
+}
+
+a {
+    color: currentColor;
+    text-decoration: none;
+}
