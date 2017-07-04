@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 public class Component
 {
-    Factory factory;
+    PersonFactory factory;
 
     public Component()
     {
-        factory = new Factory();
+        factory = new PersonFactory();
     }
 
     public List<Page> GetPages()
