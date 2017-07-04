@@ -1,7 +1,9 @@
 using System;
 
-public class Page 
+namespace BE
 {
-    public string Title { get; set; }
-    public string UrlTag { get; set; }
+    public class Page : CVObject
+    {
+        public string UrlTag { get; set; }
+    }
 }

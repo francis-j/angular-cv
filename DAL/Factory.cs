@@ -1,37 +1,36 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-public class Factory
+namespace DAL
 {
-    public Factory() 
+    public abstract class Factory<T> : IFactory<T>
     {
+        public Repository<T> repository;
 
-    }
-
-    public List<Page> GetPages()
-    {
-        return new List<Page>()
+        public IEnumerable<T> Get()
         {
-            new Page()
-            {
-                Title = "Employment History",
-                UrlTag = "employment"
-            },
-            new Page()
-            {
-                Title = "Education",
-                UrlTag = "education"
-            },
-            new Page()
-            {
-                Title = "Hobbies",
-                UrlTag = "hobbies"
-            },
-            new Page()
-            {
-                Title = "Contact",
-                UrlTag = "contact"
-            }
-        };
+            return this.repository.Get().Result.ToList();
+        }
+
+        public T Get(int id)
+        {
+            return this.repository.Get(id).Result;
+        }
+
+        public void Add(T item)
+        {
+            this.repository.Add(item);
+        }
+
+        public void Delete(int id)
+        {
+            this.repository.Delete(id);
+        }
+
+        public void Update(int id, T item)
+        {
+            this.repository.Update(id, item);
+        }
     }
 }

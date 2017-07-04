@@ -2,45 +2,54 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BE;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
+    [EnableCors("AllowSpecificOrigin")]
     public class PersonController : Controller
     {
         // GET: api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Person> Get()
         {
-            return new string[] { "value1", "value2" };
+            var component = new PersonComponent();
+            return component.GetAllPersons();
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+        public Person Get(int id)
+		{
+			var component = new PersonComponent();
+            return component.GetPerson(id);
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
-        {
+        public bool Post([FromBody]Person person)
+		{
+			var component = new PersonComponent();
+            return component.AddPerson(person);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
+        public bool Put(int id, [FromBody]Person person)
+		{
+			var component = new PersonComponent();
+            return component.UpdatePerson(id, person);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+        public bool Delete(int id)
+		{
+			var component = new PersonComponent();
+            return component.DeletePerson(id);
         }
     }
 }

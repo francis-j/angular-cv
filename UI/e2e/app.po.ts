@@ -1,6 +1,6 @@
 import { browser, by, element } from 'protractor';
 
-export class CvPage {
+export class UIPage {
   navigateTo() {
     return browser.get('/');
   }

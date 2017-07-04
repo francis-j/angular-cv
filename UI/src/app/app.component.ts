@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptions } from '@angular/http';
 import { MenuItem } from "app/MenuItem";
 
 @Component({
@@ -11,8 +11,9 @@ export class AppComponent implements OnInit {
 
     constructor(private _httpService: Http) { }
     menuItems: Array<MenuItem>;
+
     ngOnInit() {
-        this._httpService.get("api/page").subscribe(values => {
+        this._httpService.get("http://localhost:5000/api/page").subscribe(values => {
             this.menuItems = values.json() as Array<MenuItem>;
         });
     }

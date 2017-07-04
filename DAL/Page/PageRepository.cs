@@ -1,10 +1,14 @@
 ﻿using System;
-namespace DAL.Page
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using BE;
+using MongoDB.Bson;
+using MongoDB.Driver;
+
+namespace DAL
 {
-    public class PageRepository
+    public class PageRepository : Repository<Page>
     {
-        public PageRepository()
-        {
-        }
+        
     }
 }

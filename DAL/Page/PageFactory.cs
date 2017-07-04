@@ -1,10 +1,15 @@
 ﻿using System;
-namespace DAL.Page
+using System.Collections.Generic;
+using System.Linq;
+using BE;
+
+namespace DAL
 {
-    public class PageFactory
+    public class PageFactory : Factory<Page>
     {
         public PageFactory()
         {
+            base.repository = new PageRepository();
         }
     }
 }

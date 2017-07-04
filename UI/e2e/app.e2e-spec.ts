@@ -1,10 +1,10 @@
-import { CvPage } from './app.po';
+import { UIPage } from './app.po';
 
-describe('cv App', () => {
-  let page: CvPage;
+describe('ui App', () => {
+  let page: UIPage;
 
   beforeEach(() => {
-    page = new CvPage();
+    page = new UIPage();
   });
 
   it('should display welcome message', () => {

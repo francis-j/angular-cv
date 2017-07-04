@@ -2,25 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BLL;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    [EnableCors("AllowSpecificOrigin")]
+    public class PageController : Controller
     {
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Page> Get()
         {
-            return new string[] { "value1", "value2" };
-        }
+            var component = new PageComponent();
+            var pages = component.GetAllPages();
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+            return pages;
         }
 
         // POST api/values
