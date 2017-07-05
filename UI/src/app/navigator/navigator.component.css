@@ -4,3 +4,14 @@
     align-items: center;
     justify-content: center;
 }
+
+.navbar-right {
+    border-radius: 0px;
+    display: flex;
+    align-items: right;
+    justify-content: right;
+}
+
+#navbarNav {
+    width: 100%;
+}
