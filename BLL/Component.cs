@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DAL;
 
 namespace BLL
@@ -10,12 +11,21 @@ namespace BLL
 
         public void Add(T item)
         {
-            factory.Add(item);
+            bool performAdd = true;
+            foreach (var i in Get().ToList())
+            {
+                if (i.Equals(item))
+                    performAdd = false;
+            }
+
+            if (performAdd)
+                factory.Add(item);
         }
 
         public void Delete(int id)
         {
-            factory.Delete(id);
+            if (Get(id) != null)
+                factory.Delete(id);
         }
 
         public IEnumerable<T> Get()
@@ -30,7 +40,8 @@ namespace BLL
 
         public void Update(int id, T item)
         {
-            factory.Update(id, item);
+            if (Get(id) != null)
+                factory.Update(id, item);
         }
     }
 }

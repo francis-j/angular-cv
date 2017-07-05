@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, RequestOptions } from '@angular/http';
-import { MenuItem } from "app/MenuItem";
+import { MenuItem } from "app/models/MenuItem";
 
 @Component({
     selector: 'app-root',
