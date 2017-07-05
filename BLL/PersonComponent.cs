@@ -1,38 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using BE;
+using BLL;
+using DAL;
 
-public class PersonComponent
+public class PersonComponent : Component<Person>
 {
-    PersonFactory factory;
-
     public PersonComponent()
     {
-        factory = new PersonFactory();
-    }
-
-    public List<Person> GetAllPersons()
-    {
-        return factory.GetAllPersons();
-    }
-
-    public Person GetPerson(int id)
-    {
-        return factory.GetPerson(id);
-    }
-
-    public bool AddPerson(Person person)
-    {
-        return factory.AddPerson(person);
-    }
-
-    public bool DeletePerson(int id)
-    {
-        return factory.DeletePerson(id);
-    }
-
-    public bool UpdatePerson(int id, Person person)
-    {
-        return factory.UpdatePerson(id, person);
+        base.factory = new PersonFactory();
     }
 }

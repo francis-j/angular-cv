@@ -1,5 +1,6 @@
 ﻿using System;
 using BE;
+using DAL;
 using Xunit;
 
 namespace XUT
@@ -17,9 +18,10 @@ namespace XUT
 		{
             var factory = new PersonFactory();
 
+			var id = 1;
 			var person = new Person()
 			{
-				Id = 1,
+				Id = id,
 				FirstName = "Test",
 				LastName = "Person",
 				EmailAddress = "test@person.com",
@@ -27,15 +29,19 @@ namespace XUT
 				Nationality = "British"
 			};
 
-            factory.AddPerson(person);
+            factory.Add(person);
+
+			var p = factory.Get(id);
+
+			Assert.Equal(person, p);
 		}
 
 		[Fact]
-		public void GetAll()
+		public void Get()
 		{
 			var factory = new PersonFactory();
 
-            if (factory.GetAllPersons() == null)
+            if (factory.Get() == null)
                 throw new Exception();
 		}
 
@@ -55,18 +61,17 @@ namespace XUT
 				Nationality = "French"
 			};
 
-            if (!factory.UpdatePerson(id, person))
-                throw new Exception();
+            factory.Update(id, person);
 		}
 
 		[Fact]
-		public void Get()
+		public void GetOne()
 		{
 			var factory = new PersonFactory();
 
 			var id = 1;
 
-			if (factory.GetPerson(id) == null)
+			if (factory.Get(id) == null)
 				throw new Exception();
 		}
 
@@ -77,8 +82,7 @@ namespace XUT
 
 			var id = 1;
 
-            if (!factory.DeletePerson(id))
-				throw new Exception();
+            factory.Delete(id);
 		}
 	}
 }

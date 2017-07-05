@@ -10,15 +10,13 @@ namespace XUT
         [Fact]
         public void InitializeRepository()
         {
-            var connectionString = StaticValues.MONGODB_URL;
-            var repository = new PersonRepository(connectionString);
+            var repository = new PersonRepository();
         }
 
         [Fact]
-        public async void Add()
+        public void Add()
         {
-			var connectionString = StaticValues.MONGODB_URL;
-			var repository = new PersonRepository(connectionString);
+			var repository = new PersonRepository();
             var person = new Person()
             {
                 Id = 1,
@@ -29,23 +27,21 @@ namespace XUT
                 Nationality = "British"
             };
 
-            await repository.Add(person);
+            repository.Add(person);
 		}
 
 		[Fact]
 		public async void GetAll()
 		{
-			var connectionString = StaticValues.MONGODB_URL;
-			var repository = new PersonRepository(connectionString);
+			var repository = new PersonRepository();
 
-            await repository.GetAll();
+            await repository.Get();
 		}
 
 		[Fact]
-		public async void Update()
+		public void Update()
 		{
-			var connectionString = StaticValues.MONGODB_URL;
-			var repository = new PersonRepository(connectionString);
+			var repository = new PersonRepository();
 			var id = 1;
 			var person = new Person()
 			{
@@ -57,27 +53,25 @@ namespace XUT
 				Nationality = "French"
 			};
 
-            await repository.Update(id, person);
+            repository.Update(id, person);
 		}
 
 		[Fact]
 		public async void Get()
 		{
-			var connectionString = StaticValues.MONGODB_URL;
-			var repository = new PersonRepository(connectionString);
+			var repository = new PersonRepository();
 			var id = 1;
 
 			await repository.Get(id);
 		}
 
         [Fact]
-        public async void Delete()
+        public void Delete()
         {
-            var connectionString = StaticValues.MONGODB_URL;
-            var repository = new PersonRepository(connectionString);
+            var repository = new PersonRepository();
             var id = 1;
 
-            await repository.Delete(id);
+            repository.Delete(id);
         }
     }
 }
