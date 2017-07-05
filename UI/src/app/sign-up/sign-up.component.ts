@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
+import { User } from 'app/models/User';
 
 @Component({
     selector: 'app-sign-up',
@@ -8,13 +9,16 @@ import { Http } from '@angular/http';
 })
 export class SignUpComponent implements OnInit {
 
+    private url = "";
+    private headers:Headers = new Headers({ "Content-Type": "application/json" });
+
     constructor(private _httpService:Http) { }
 
     ngOnInit() {
     }
 
-    submitForm(event) {
-        //this._httpService.post("http://localhost:5000/api/user", event)
+    submitForm(user: User) {
+        this._httpService.post(this.url, JSON.stringify(user), { headers: this.headers });
     }
 
 }
