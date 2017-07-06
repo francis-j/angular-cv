@@ -4,9 +4,8 @@ using BE;
 
 namespace BE
 {
-    public class List : CVObject
+    public class List : GTObject
     {
         public IEnumerable<String> Items { get; set; }
-        public int SectionId { get; set; }
     }
 }

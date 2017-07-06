@@ -1,9 +1,10 @@
 using System;
+using System.Collections.Generic;
 
 namespace BE
 {
-    public class Page : CVObject
+    public class Page : GTObject
     {
-        public string UrlTag { get; set; }
+        public IEnumerable<Section> Sections { get; set; }
     }
 }

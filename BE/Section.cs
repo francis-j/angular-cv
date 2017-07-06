@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 
 namespace BE
 {
-    public class Section : CVObject
+    public class Section : GTObject
     {
-        public int PageId { get; set; }
+        public IEnumerable<List> Lists { get; set; }
     }
 }
 
