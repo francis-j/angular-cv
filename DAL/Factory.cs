@@ -10,12 +10,16 @@ namespace DAL
 
         public IEnumerable<T> Get()
         {
-            return this.repository.Get().Result.ToList();
+            var list = this.repository.Get().Result.ToList();
+
+            return list;
         }
 
-        public T Get(int id)
+        public IEnumerable<T> Get(IEnumerable<KeyValuePair<string, object>> filters)
         {
-            return this.repository.Get(id).Result;
+            var list = this.repository.Get(filters.ToList()).Result;
+
+            return list;
         }
 
         public void Add(T item)

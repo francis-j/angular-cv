@@ -8,7 +8,7 @@ namespace DAL
     public interface IRepository<T>
     {
         Task<IEnumerable<T>> Get();
-        Task<T> Get(int id);
+        Task<IEnumerable<T>> Get(List<KeyValuePair<string, object>> filters);
         void Add(T item);
         void Delete(int id);
         void Update(int id, T item);

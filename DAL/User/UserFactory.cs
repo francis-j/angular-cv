@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using BE;
 
 namespace DAL
@@ -7,7 +9,7 @@ namespace DAL
     {
         public UserFactory()
         {
-            base.repository = new UserRepository();
+            this.repository = new UserRepository();
         }
     }
 }

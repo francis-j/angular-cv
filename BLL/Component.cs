@@ -24,23 +24,43 @@ namespace BLL
 
         public void Delete(int id)
         {
-            if (Get(id) != null)
+            if (GetById(id) != null)
                 factory.Delete(id);
         }
 
         public IEnumerable<T> Get()
         {
-            return factory.Get();
+            var list = factory.Get();
+
+            return list;
         }
 
-        public T Get(int id)
+        public T GetById(int id)
         {
-            return factory.Get(id);
+            var filters = new List<KeyValuePair<string, object>>();
+            filters.Add(new KeyValuePair<string, object>("_id", id));
+
+            var items = Get(filters);
+
+            if (items.Count() > 0)
+            {
+                var item = items.ToList().FirstOrDefault();
+                return item;
+            }
+
+            return default(T);
+        }
+
+        public IEnumerable<T> Get(IEnumerable<KeyValuePair<string, object>> filters)
+        {
+            var list = factory.Get(filters);
+
+            return list;
         }
 
         public void Update(int id, T item)
         {
-            if (Get(id) != null)
+            if (GetById(id) != null)
                 factory.Update(id, item);
         }
     }

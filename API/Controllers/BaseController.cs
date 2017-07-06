@@ -23,7 +23,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public T Get(int id)
 		{
-            return component.Get(id);
+            return component.GetById(id);
         }
 
         // POST api/values

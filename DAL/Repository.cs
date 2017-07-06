@@ -12,7 +12,7 @@ namespace DAL
     {
         private MongoClient client;
         private IMongoDatabase database;
-        private IMongoCollection<T> collection;
+        public IMongoCollection<T> collection;
 
         public Repository()
         {
@@ -30,12 +30,21 @@ namespace DAL
             return items;
         }
 
-        public async Task<T> Get(int id)
+        public async Task<IEnumerable<T>> Get(List<KeyValuePair<string, object>> filters)
         {
-            var filter = Builders<T>.Filter.Eq("_id", id);
-            var item = await this.collection.Find(filter).FirstOrDefaultAsync();
+            var definitions = new List<FilterDefinition<T>>();
 
-            return item;
+            foreach (var filter in filters)
+            {
+                var definition = Builders<T>.Filter.Eq(filter.Key, filter.Value);
+                definitions.Add(definition);
+            }
+
+            var masterFilter = Builders<T>.Filter.And(definitions);
+
+            var result = await this.collection.Find(masterFilter).ToListAsync();
+
+            return result;
         }
 
         public async void Add(T item)

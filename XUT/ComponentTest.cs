@@ -19,7 +19,7 @@ namespace XUT
         public void GetOne()
         {
             var id = 1;
-            var result = new PersonComponent().Get(id);
+            var result = new PersonComponent().GetById(id);
 
             Assert.NotNull(result);
         }
@@ -43,7 +43,7 @@ namespace XUT
             
             Thread.Sleep(1000); //Async so need to wait before checking
 
-            var result = component.Get(id);
+            var result = component.GetById(id);
 
             Assert.Equal(person, result);
         }
@@ -58,7 +58,7 @@ namespace XUT
             
             Thread.Sleep(1000); //Async so need to wait before checking
 
-            var result = component.Get(id);
+            var result = component.GetById(id);
 
             Assert.Null(result);
         }
@@ -79,7 +79,7 @@ namespace XUT
 
             Thread.Sleep(1000); //Async so need to wait before checking
 
-            var result = component.Get(id);
+            var result = component.GetById(id);
 
             Assert.Equal(person, result);
         }

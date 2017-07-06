@@ -15,7 +15,15 @@ namespace API.Controllers
     {
         public UserController()
         {
-            base.component = new UserComponent();
+            this.component = new UserComponent();
+        }
+
+        [HttpGet("{username, password}")]
+        public User Login(string username, string password)
+        {
+            var user = (this.component as UserComponent).Login(username, password);
+
+            return user;
         }
     }
 }
