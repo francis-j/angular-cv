@@ -1,24 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptionsArgs } from '@angular/http';
 import { User } from 'app/models/User';
 
 @Component({
     selector: 'app-sign-up',
     templateUrl: './sign-up.component.html',
-    styleUrls: ['./sign-up.component.css'],
+    styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
 
-    private url = "";
+    private url = "http://localhost:5000/api/user";
     private headers:Headers = new Headers({ "Content-Type": "application/json" });
+    private options:RequestOptionsArgs = { headers: this.headers };
 
     constructor(private _httpService:Http) { }
 
     ngOnInit() {
+
     }
 
-    submitForm(user: User) {
-        this._httpService.post(this.url, JSON.stringify(user), { headers: this.headers });
+    submitForm(username) {
+        let u = JSON.stringify(username);
+        this._httpService.post(this.url, u, this.options);
     }
 
 }

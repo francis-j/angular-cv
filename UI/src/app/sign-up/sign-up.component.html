@@ -2,20 +2,20 @@
     <div class="row">
         <h2>Sign up</h2>
     </div>
-    <form>
-        <div class="row">
-            <h5>Username</h5>
-            <input type="text" name="username" />
-            <h5>Password</h5>
-            <input type="password" name="password" />
-            <h5>First name</h5>
-            <input type="text" name="firstname" />
-            <h5>Last name</h5>
-            <input type="text" name="lastname" />
-            <div style="height:20px;"></div>
-        </div>
-        <div class="row">
-            <input type="submit" class="btn btn-submit" (click)="submitForm()"/>
-        </div>
-    </form>
+    <div class="row">
+        <h5>Username</h5>
+        <input type="text" [(ngModel)]="username" />
+        <h5>Password</h5>
+        <input type="password" [(ngModel)]="user.password" />
+        <h5>First name</h5>
+        <input type="text" [(ngModel)]="user.firstName" />
+        <h5>Last name</h5>
+        <input type="text" [(ngModel)]="user.lastName" />
+        <h5>Email Address</h5>
+        <input type="email" [(ngModel)]="user.emailAddress" />
+        <div style="height:20px;"></div>
+    </div>
+    <div class="row">
+        <input type="button" class="btn btn-submit" value="Submit" (click)="submitForm()" />
+    </div>
 </div>

@@ -1,16 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { routes } from './app.router';
-
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { routes } from './app.router';
+
 import { HeaderComponent } from './header/header.component';
 import { HorizontalListComponent } from './horizontal-list/horizontal-list.component';
 import { NavigatorComponent } from './navigator/navigator.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { FormComponent } from './form/form.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     NavigatorComponent,
     FooterComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
