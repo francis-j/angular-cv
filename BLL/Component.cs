@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DAL;
+using MongoDB.Bson;
 
 namespace BLL
 {
@@ -22,7 +23,7 @@ namespace BLL
                 factory.Add(item);
         }
 
-        public void Delete(int id)
+        public void Delete(ObjectId id)
         {
             if (GetById(id) != null)
                 factory.Delete(id);
@@ -35,7 +36,14 @@ namespace BLL
             return list;
         }
 
-        public T GetById(int id)
+        public IEnumerable<T> Get(IEnumerable<KeyValuePair<string, object>> filters)
+        {
+            var list = factory.Get(filters);
+
+            return list;
+        }
+
+        public T GetById(ObjectId id)
         {
             var filters = new List<KeyValuePair<string, object>>();
             filters.Add(new KeyValuePair<string, object>("_id", id));
@@ -51,14 +59,7 @@ namespace BLL
             return default(T);
         }
 
-        public IEnumerable<T> Get(IEnumerable<KeyValuePair<string, object>> filters)
-        {
-            var list = factory.Get(filters);
-
-            return list;
-        }
-
-        public void Update(int id, T item)
+        public void Update(ObjectId id, T item)
         {
             if (GetById(id) != null)
                 factory.Update(id, item);

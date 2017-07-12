@@ -1,4 +1,5 @@
 export interface MenuItem  {
     title: string;
-    urlTag: string;
+    urlRoute: string;
+    visible: boolean;
 }

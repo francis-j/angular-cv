@@ -1,20 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, RequestOptions } from '@angular/http';
+import { HttpHelper } from "app/app.api";
 import { MenuItem } from "app/models/MenuItem";
+import { User } from "app/models/User";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styleUrls: ['./app.component.css'],
+    providers: [HttpHelper]
 })
 export class AppComponent implements OnInit {
 
-    constructor(private _httpService: Http) { }
+    constructor(private http: HttpHelper, private router:Router) { }
     menuItems: Array<MenuItem>;
 
     ngOnInit() {
-        this._httpService.get("http://localhost:5000/api/page").subscribe(values => {
-            this.menuItems = values.json() as Array<MenuItem>;
-        });
+
+        if (localStorage.getItem("currentUser")) {
+            this.router.navigate(["/home"]);
+        }
+        else {
+            this.router.navigate(["/login"]);
+        }
     }
 }

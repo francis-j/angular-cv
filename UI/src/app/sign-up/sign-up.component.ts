@@ -1,27 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Headers, RequestOptionsArgs } from '@angular/http';
 import { User } from 'app/models/User';
+import { Router, NavigationExtras } from '@angular/router';
+import { GlobalSettings } from 'app/app.static.values';
+import { HttpHelper } from 'app/app.api';
 
 @Component({
     selector: 'app-sign-up',
     templateUrl: './sign-up.component.html',
-    styleUrls: ['./sign-up.component.css']
+    styleUrls: ['./sign-up.component.css'],
+    providers: [HttpHelper]
 })
 export class SignUpComponent implements OnInit {
 
-    private url = "http://localhost:5000/api/user";
-    private headers:Headers = new Headers({ "Content-Type": "application/json" });
-    private options:RequestOptionsArgs = { headers: this.headers };
+    public user:User = new User();
 
-    constructor(private _httpService:Http) { }
+    constructor(private router:Router, private httpHelper:HttpHelper) { }
 
     ngOnInit() {
-
     }
 
-    submitForm(username) {
-        let u = JSON.stringify(username);
-        this._httpService.post(this.url, u, this.options);
+    submitForm(user:User) {
+        let u = JSON.stringify(user);
+        var result:User;
+        try {
+            result = this.httpHelper.post("user", u) as User;  
+
+            if (result == null) 
+            {
+                var error = new Error();
+                error.message = "Unhandled exception";
+
+                throw error;
+            }
+            else
+            {
+                this.router.navigate(["/login"]);
+            }
+        }
+        catch (e) {
+            let extras:NavigationExtras = [ { "Message": e.message } ];
+            this.router.navigate(["/error"], extras)
+        }
     }
 
 }

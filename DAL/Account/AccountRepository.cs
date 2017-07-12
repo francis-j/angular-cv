@@ -6,7 +6,7 @@ using MongoDB.Driver;
 
 namespace DAL
 {
-    public class UserRepository : Repository<User>
+    public class AccountRepository : Repository<Account>
     {
         
     }

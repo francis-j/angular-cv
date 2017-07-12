@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BLL;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 
 namespace API.Controllers
 {
@@ -21,14 +22,14 @@ namespace API.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public T Get(int id)
+        public IEnumerable<T> Get(IEnumerable<KeyValuePair<string, object>> filters)
 		{
-            return component.GetById(id);
+            return component.Get(filters);
         }
 
         // POST api/values
         [HttpPost]
-        public bool Post([FromBody]T item)
+        public virtual bool Post([FromBody]T item)
 		{
             try
             {
@@ -46,7 +47,7 @@ namespace API.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public bool Put(int id, [FromBody]T item)
+        public bool Put(ObjectId id, [FromBody]T item)
 		{
             try
             {
@@ -64,7 +65,7 @@ namespace API.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public bool Delete(int id)
+        public bool Delete(ObjectId id)
 		{
             try
             {

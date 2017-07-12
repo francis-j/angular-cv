@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MongoDB.Bson;
 
 namespace DAL
 {
@@ -8,7 +9,7 @@ namespace DAL
         IEnumerable<T> Get();
         IEnumerable<T> Get(IEnumerable<KeyValuePair<string, object>> filters);
         void Add(T item);
-        void Delete(int id);
-        void Update(int id, T item);
+        void Delete(ObjectId id);
+        void Update(ObjectId id, T item);
     }
 }

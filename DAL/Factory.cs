@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MongoDB.Bson;
 
 namespace DAL
 {
@@ -27,12 +28,12 @@ namespace DAL
             this.repository.Add(item);
         }
 
-        public void Delete(int id)
+        public void Delete(ObjectId id)
         {
             this.repository.Delete(id);
         }
 
-        public void Update(int id, T item)
+        public void Update(ObjectId id, T item)
         {
             this.repository.Update(id, item);
         }

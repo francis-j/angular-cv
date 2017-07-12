@@ -4,13 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using BE;
 using BLL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [EnableCors("AllowSpecificOrigin")]
+    [Authorize]
     public class UserController : BaseController<User>
     {
         public UserController()
@@ -18,12 +21,13 @@ namespace API.Controllers
             this.component = new UserComponent();
         }
 
-        [HttpGet("{username, password}")]
-        public User Login(string username, string password)
-        {
-            var user = (this.component as UserComponent).Login(username, password);
+        [HttpPost]
+        public override bool Post([FromBody]User item)
+		{
+            //Prepare new object
+            item.Id = ObjectId.GenerateNewId().ToString();
 
-            return user;
+            return base.Post(item);
         }
     }
 }

@@ -48,17 +48,17 @@ namespace DAL
         }
 
         public async void Add(T item)
-        {
+        {   
             await this.collection.InsertOneAsync(item);
         }
 
-        public async void Delete(int id)
+        public async void Delete(ObjectId id)
         {
             var filter = Builders<T>.Filter.Eq("_id", id);
             await this.collection.DeleteOneAsync(filter);
         }
 
-        public async void Update(int id, T item)
+        public async void Update(ObjectId id, T item)
         {
             var filter = Builders<T>.Filter.Eq("_id", id);
             await this.collection.FindOneAndReplaceAsync(filter, item);

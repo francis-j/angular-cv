@@ -1,0 +1,7 @@
+<div [formGroup]="form">
+    <h2 [attr.for]="item.key">{{item.label}}</h2>
+    <div>
+        <input [formControlName]="item.key" [id]="item.key" [type]="item.type">
+    </div>
+    <div class="errorMessage" *ngIf="!isValid">{{item.label}} is required</div>
+</div>

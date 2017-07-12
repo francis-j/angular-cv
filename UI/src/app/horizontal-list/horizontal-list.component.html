@@ -1,5 +1,5 @@
 <ul class="nav navbar-nav mr-auto" >
     <li class="nav-item" *ngFor="let item of listItems">
-        <a class="nav-link" routerLink="{{item.urlTag}}">{{item.title}}</a>
+        <a *ngIf="item.visible" class="nav-link" routerLink="{{item.urlRoute}}">{{item.title}}</a>
     </li>
 </ul>

@@ -1,7 +1,16 @@
-<form name="form">
-    <div class="form-group" ng-repeat="user in formData.users">
-        <label>{{ user.name }}'s Email</label>
-        <input type="text" class="form-control" name="email" ng-model="user.email" required>
-        <p class="help-block" ng-show="userForm.email.$invalid">Valid Email Address Required</p>
+<div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+        <div *ngFor="let item of items" class="form-row">
+            <app-form-component [item]="item" [form]="form"></app-form-component>
+        </div>
+
+        <div class="form-row">
+            <button type="submit" [disabled]="!form.valid">Save</button>
+        </div>
+    </form>
+
+    <div *ngIf="payLoad" class="form-row">
+        <strong>Saved the following values</strong><br>{{payLoad}}
     </div>
-</form>
+</div>

@@ -1,3 +1,15 @@
-<p>
-  login works!
-</p>
+<div class="container">
+    <div class="row">
+        <h2>Log in</h2>
+    </div>
+    <div class="row">
+        <form (submit)="submitForm(login)">
+            <h5>Username</h5>
+            <input type="text" name="username" [(ngModel)]="login.username" />
+            <h5>Password</h5>
+            <input type="password" name="password" [(ngModel)]="login.password" />
+            <div style="height:20px;"></div>
+            <input type="submit" class="btn btn-submit" value="Log in"/>
+        </form>
+    </div>
+</div>
