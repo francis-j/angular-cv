@@ -16,7 +16,7 @@ namespace BLL
         public Account Login(Account account)
         {
             var filters = new List<KeyValuePair<string, object>>();
-            filters.Add(new KeyValuePair<string, object>(account.Username, account.Password));
+            filters.Add(new KeyValuePair<string, object>(account.Email, account.Password));
             
             var result = (this.factory as AccountFactory).Get(filters).ToList().First();
 
