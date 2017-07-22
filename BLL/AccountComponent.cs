@@ -8,9 +8,9 @@ namespace BLL
 {
     public class AccountComponent : Component<Account>
     {
-        public AccountComponent()
+        public AccountComponent(IRepository<Account> repository)
         {
-            this.factory = new AccountFactory();
+            this.repository = repository;
         }
 
         public Account Login(Account account)
@@ -18,7 +18,7 @@ namespace BLL
             var filters = new List<KeyValuePair<string, object>>();
             filters.Add(new KeyValuePair<string, object>(account.Email, account.Password));
             
-            var result = (this.factory as AccountFactory).Get(filters).ToList().First();
+            var result = (this.repository).Get(filters).ToList().First();
 
             return result;
         }

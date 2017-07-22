@@ -23,14 +23,14 @@ namespace DAL
             this.collection = this.database.GetCollection<T>(typeof(T).Name);
         }
 
-        public async Task<IEnumerable<T>> Get()
+        public IEnumerable<T> Get()
         {
-            var items = await this.collection.Find(new BsonDocument()).ToListAsync();
+            var items = this.collection.Find(new BsonDocument()).ToList();
 
             return items;
         }
 
-        public async Task<IEnumerable<T>> Get(List<KeyValuePair<string, object>> filters)
+        public IEnumerable<T> Get(List<KeyValuePair<string, object>> filters)
         {
             var definitions = new List<FilterDefinition<T>>();
 
@@ -42,12 +42,12 @@ namespace DAL
 
             var masterFilter = Builders<T>.Filter.And(definitions);
 
-            var result = await this.collection.Find(masterFilter).ToListAsync();
+            var result = this.collection.Find(masterFilter).ToList();
 
             return result;
         }
 
-        public async void Add(T item)
+        public async Task Add(T item)
         {   
             await this.collection.InsertOneAsync(item);
         }

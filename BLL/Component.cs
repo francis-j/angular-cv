@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DAL;
 using MongoDB.Bson;
 
@@ -8,7 +9,7 @@ namespace BLL
 {
     public abstract class Component<T> : IComponent<T>
     {
-        public Factory<T> factory;
+        public IRepository<T> repository;
 
         public void Add(T item)
         {
@@ -20,25 +21,30 @@ namespace BLL
             }
 
             if (performAdd)
-                factory.Add(item);
+                repository.Add(item);
         }
 
         public void Delete(ObjectId id)
         {
             if (GetById(id) != null)
-                factory.Delete(id);
+                repository.Delete(id);
         }
 
         public IEnumerable<T> Get()
         {
-            var list = factory.Get();
+            var list = repository.Get();
 
             return list;
         }
 
+        public async Task<IEnumerable<T>> GetAsync()
+        {
+            var result = await Get();
+        }
+
         public IEnumerable<T> Get(IEnumerable<KeyValuePair<string, object>> filters)
         {
-            var list = factory.Get(filters);
+            var list = repository.Get(filters.ToList());
 
             return list;
         }
@@ -62,7 +68,7 @@ namespace BLL
         public void Update(ObjectId id, T item)
         {
             if (GetById(id) != null)
-                factory.Update(id, item);
+                repository.Update(id, item);
         }
     }
 }
