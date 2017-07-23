@@ -10,12 +10,16 @@ namespace DAL
 {
     public abstract class Repository<T> : IRepository<T>
     {
+        private readonly IErrorLogger logger;
+
         private MongoClient client;
         private IMongoDatabase database;
         public IMongoCollection<T> collection;
 
-        public Repository()
+        public Repository(IErrorLogger logger)
         {
+            this.logger = logger;
+
             var connectionString = LookupValues.MONGODB_URL;
             this.client = new MongoClient(connectionString);
             this.database = this.client.GetDatabase(LookupValues.MONGODB_DATABASE_NAME);
@@ -47,21 +51,54 @@ namespace DAL
             return result;
         }
 
-        public async Task Add(T item)
+        public bool Add(T item)
         {   
-            await this.collection.InsertOneAsync(item);
+            bool success = false;
+
+            try 
+            {
+                success = this.collection.InsertOneAsync(item).IsCompleted;
+            }
+            catch (Exception e)
+            {
+                logger.Write(e.Source, e.Message);
+            }
+
+            return success;
         }
 
-        public async void Delete(ObjectId id)
+        public bool Delete(ObjectId id)
         {
-            var filter = Builders<T>.Filter.Eq("_id", id);
-            await this.collection.DeleteOneAsync(filter);
+            bool success = false;
+
+            try 
+            {
+                var filter = Builders<T>.Filter.Eq("_id", id);
+                success = this.collection.DeleteOneAsync(filter).IsCompleted;
+            }
+            catch (Exception e)
+            {
+                logger.Write(e.Source, e.Message);
+            }
+
+            return success;
         }
 
-        public async void Update(ObjectId id, T item)
+        public bool Update(ObjectId id, T item)
         {
-            var filter = Builders<T>.Filter.Eq("_id", id);
-            await this.collection.FindOneAndReplaceAsync(filter, item);
+            bool success = false;
+
+            try 
+            {
+                var filter = Builders<T>.Filter.Eq("_id", id);
+                success = this.collection.FindOneAndReplaceAsync(filter, item).IsCompleted;
+            }
+            catch (Exception e)
+            {
+                logger.Write(e.Source, e.Message);
+            }
+
+            return success;
         }
     }
 }

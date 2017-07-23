@@ -37,11 +37,6 @@ namespace BLL
             return list;
         }
 
-        public async Task<IEnumerable<T>> GetAsync()
-        {
-            var result = await Get();
-        }
-
         public IEnumerable<T> Get(IEnumerable<KeyValuePair<string, object>> filters)
         {
             var list = repository.Get(filters.ToList());

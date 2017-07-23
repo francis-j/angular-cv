@@ -25,16 +25,16 @@ export class HttpHelper
 
     post(apiRoute:string, body:string):any {
         let url:string = GlobalSettings.API_URL + apiRoute;
-        var model:any;
+        var status:any;
 
         this.http.post(url, body, this.options).subscribe(values => {
-            model = values.json();
+            status = { "code":values.status, "message":values.statusText };
         },
         error => {
-            model.error = error.message();
+            status = { "code":error.status, "message":error.statusText };
         });
 
-        return model;
+        return status;
     }
 
     delete(apiRoute:string, id:string):boolean {

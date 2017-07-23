@@ -9,7 +9,8 @@
             <h5>Password</h5>
             <input type="password" name="password" [(ngModel)]="login.password" />
             <div style="height:20px;"></div>
-            <input type="submit" class="btn btn-submit" value="Log in"/>
+            <input type="submit" class="btn btn-primary" value="Log in"/>
+            <input type="button" class="btn btn-secondary" value="Register" (click)="switchPage()" />
         </form>
     </div>
 </div>

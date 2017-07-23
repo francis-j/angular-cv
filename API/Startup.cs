@@ -16,6 +16,9 @@ using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using DAL;
+using DAL.Loggers;
+using DAL.Repositories;
 
 namespace API
 {
@@ -38,6 +41,8 @@ namespace API
         {
             // Add framework services.
             services.AddMvc();
+            services.AddTransient<IErrorLogger, EventLogger>();
+            services.AddTransient<IRepository<Account>, AccountRepository>();
             services.AddTransient<IComponent<Account>, AccountComponent>();
             services.AddCors(options =>
             {
@@ -56,7 +61,6 @@ namespace API
             loggerFactory.AddDebug();
 
             app.UseMvc();
-            app.UseIdentity();
             app.UseCors("AllowSpecificOrigin");
         }
     }

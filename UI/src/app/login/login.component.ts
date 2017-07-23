@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { Login } from 'app/models/login';
 import { GlobalSettings } from 'app/app.static.values';
@@ -13,6 +13,8 @@ import { User } from 'app/models/user';
 })
 export class LoginComponent implements OnInit {
 
+    @Output() switchPageEvent = new EventEmitter();
+
     public login:Login = new Login();
 
     constructor(private router: Router, private httpHelper:HttpHelper) { }
@@ -23,10 +25,14 @@ export class LoginComponent implements OnInit {
         }
     }
 
-    AttemptLogin(login: Login) {
+    switchPage() {
+        this.switchPageEvent.next("switchPage");
+    }
+
+    attemptLogin(login: Login) {
         let l = JSON.stringify(login);
         try {
-            var users = this.httpHelper.get("user", l) as Array<User>;
+            var users = this.httpHelper.get("account/login", l) as Array<User>;
             var user:User; 
 
             alert(JSON.stringify(user));

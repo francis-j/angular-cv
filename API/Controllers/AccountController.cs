@@ -37,6 +37,7 @@ namespace API
             return Ok();
         }
 
+        [HttpPost]
         public IActionResult Register([FromBody]Account account)
         {
             var filters = new List<KeyValuePair<string, object>>();
