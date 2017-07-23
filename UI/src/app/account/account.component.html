@@ -1,0 +1,2 @@
+<app-login *ngIf="showLogin" (switchPageEvent)="switchPage()"></app-login>
+<app-register *ngIf="!showLogin" (switchPageEvent)="switchPage()"></app-register>
