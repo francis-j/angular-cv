@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
 import { AccountComponent } from './account/account.component';
 import { LogoutComponent } from './logout/logout.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { LoginComponent } from "app/login/login.component";
 
 export const router: Routes = [
     {
@@ -14,10 +14,6 @@ export const router: Routes = [
     {
         path:       "error",
         component:  ErrorComponent
-    },
-    {
-        path:       "signup", 
-        component:  SignUpComponent
     },
     {
         path:       "account", 

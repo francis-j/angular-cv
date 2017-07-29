@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from "rxjs/Subscription";
+import { CommonService } from "app/common.service";
 
 @Component({
     selector: 'app-account',
@@ -8,15 +10,20 @@ import { Component, OnInit } from '@angular/core';
 export class AccountComponent implements OnInit {
 
     public showLogin: boolean;
+    private subscription:Subscription;
 
-    constructor() { }
+    constructor(private commonService:CommonService) { }
 
     ngOnInit() {
         this.showLogin = true;
+        
+        this.subscription = this.commonService.accountActionObservable$.subscribe(
+            result => this.showAccountPage(result)
+        );
     }
 
-    switchPage() {
-        this.showLogin = !this.showLogin;
+    showAccountPage(showLogin:boolean) {
+        this.showLogin = showLogin;
     }
 
 }

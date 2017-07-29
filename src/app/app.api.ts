@@ -1,6 +1,10 @@
 import { Component, OnInit, Injectable } from "@angular/core";
-import { Http, Headers, RequestOptionsArgs } from "@angular/http";
+import { Http, Response, Headers, RequestOptionsArgs } from "@angular/http";
 import { GlobalSettings } from "app/app.static.values";
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import { Observable } from "rxjs/Observable";
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class HttpHelper
@@ -12,50 +16,50 @@ export class HttpHelper
 
     constructor(private http:Http) { }
 
-    get(apiRoute:string, id?:string):any {
+    get(apiRoute:string, id?:string):Observable<any> {
         let url:string = GlobalSettings.API_URL + apiRoute + (id ? "/" + id : "");
-        var model:any;
 
-        this.http.get(url, this.options).subscribe(values => {
-            model = values.json();
-        });
-
-        return model;
+        return this.http
+            .get(url, this.options)
+            .map(this.getResponseData)
+            .catch(this.logError);
     }
 
-    post(apiRoute:string, body:string):any {
-        let url:string = GlobalSettings.API_URL + apiRoute;
-        var status:any;
+    post(apiRoute:string, body:string):Observable<any> {
+        var url:string = GlobalSettings.API_URL + apiRoute;
 
-        this.http.post(url, body, this.options).subscribe(values => {
-            status = { "code":values.status, "message":values.statusText };
-        },
-        error => {
-            status = { "code":error.status, "message":error.statusText };
-        });
-
-        return status;
+        return this.http
+            .post(url, body, this.options)
+            .map(this.getResponseData)
+            .catch(this.logError);
     }
 
-    delete(apiRoute:string, id:string):boolean {
+    delete(apiRoute:string, id:string):Observable<any> {
         let url:string = GlobalSettings.API_URL + apiRoute + "/" + id;
-        var success = false;
 
-        this.http.delete(url, this.options).subscribe(values => {
-            success = values.ok;
-        });
-
-        return success;
+        return this.http
+            .delete(url, this.options)
+            .map(this.getResponseData)
+            .catch(this.logError);
     }
 
-    put(apiRoute:string, body:string):any {
+    put(apiRoute:string, body:string):Observable<any> {
         let url:string = GlobalSettings.API_URL + apiRoute;
-        var model:any;
 
-        this.http.put(url, body, this.options).subscribe(values => {
-            model = values.json();
-        });
+        return this.http
+            .put(url, body, this.options)
+            .map(this.getResponseData)
+            .catch(this.logError);
+    }
 
-        return model;
+    private getResponseData(res:Response) {
+        let body = JSON.stringify(res);
+        return body || {};
+    }
+
+    private logError(error:any) {
+        console.error("Error", error);
+        console.log("Error");
+        return Observable.throw(error);
     }
 }

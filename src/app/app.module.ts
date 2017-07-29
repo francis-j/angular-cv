@@ -10,7 +10,6 @@ import { HorizontalListComponent } from './horizontal-list/horizontal-list.compo
 import { NavigatorComponent } from './navigator/navigator.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormComponent } from './form/form.component';
 import { FormComponentComponent } from './form-component/form-component.component';
 import { HomeComponent } from './home/home.component';
@@ -18,6 +17,10 @@ import { ErrorComponent } from './error/error.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { AccountComponent } from './account/account.component';
+
+import { HttpHelper } from "app/app.api";
+import { CommonService } from "app/common.service";
+import { VerticalListComponent } from './vertical-list/vertical-list.component';
 
 
 @NgModule({
@@ -28,14 +31,14 @@ import { AccountComponent } from './account/account.component';
     NavigatorComponent,
     FooterComponent,
     LoginComponent,
-    SignUpComponent,
     FormComponent,
     FormComponentComponent,
     HomeComponent,
     ErrorComponent,
     LogoutComponent,
     RegisterComponent,
-    AccountComponent
+    AccountComponent,
+    VerticalListComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,7 @@ import { AccountComponent } from './account/account.component';
     HttpModule,
     routes
   ],
-  providers: [],
+  providers: [HttpHelper, CommonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

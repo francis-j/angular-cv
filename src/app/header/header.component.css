@@ -17,7 +17,3 @@ a {
     color: currentColor;
     text-decoration: none;
 }
-
-a:hover {
-    color: red;
-}

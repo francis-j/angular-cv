@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import { Login } from 'app/models/login';
+import { AccountLogin } from 'app/models/AccountLogin';
 import { GlobalSettings } from 'app/app.static.values';
 import { HttpHelper } from 'app/app.api';
-import { User } from 'app/models/user';
+import { CommonService } from "app/common.service";
 
 @Component({
     selector: 'app-login',
@@ -14,52 +14,65 @@ import { User } from 'app/models/user';
 export class LoginComponent implements OnInit {
 
     @Output() switchPageEvent = new EventEmitter();
+    @Output() checkLoginEvent = new EventEmitter();
 
-    public login:Login = new Login();
+    public account:AccountLogin = new AccountLogin();
+    public errorMsg: string;
 
-    constructor(private router: Router, private httpHelper:HttpHelper) { }
+    constructor(private router: Router, private httpHelper:HttpHelper, private commonService:CommonService) { }
 
     ngOnInit() {
+        this.errorMsg = "";
+
         if (localStorage.getItem("currentUser")) {
             this.router.navigate(["/home"]);
         }
     }
 
-    switchPage() {
-        this.switchPageEvent.next("switchPage");
-    }
-
-    attemptLogin(login: Login) {
-        let l = JSON.stringify(login);
+    attemptLogin(account: AccountLogin) {
+        let strAccount = JSON.stringify(account);
         try {
-            var users = this.httpHelper.get("account/login", l) as Array<User>;
-            var user:User; 
-
-            alert(JSON.stringify(user));
-
-            if (users.length == 0) 
-            {
-                var error = new Error();
-                error.message = "No users found";
-
-                throw error;
-            } else if (users.length > 1) {
-                var error = new Error();
-                error.message = "Too many users match the criteria.";
-
-                throw error;
-            }
-            else
-            {
-                this.router.navigate(["/home"]);
-                localStorage.setItem("currentUser", JSON.stringify(user));
-            }
+            this.httpHelper
+                .post("account/login", strAccount)
+                .subscribe(
+                    result => this.processLogin(result),
+                    error => this.setError(error)
+                );
         }
         catch (e) {
             let extras:NavigationExtras = [ { "Message": e.message } ];
             this.router.navigate(["/error"], extras)
             alert(e.message);
         }
+    }
+
+    processLogin(result:string) {
+        try {
+            let obj = JSON.parse(result);
+            
+            if (obj.status == 200) {
+                localStorage.setItem("currentUser", JSON.stringify(obj));
+                this.commonService.processLoginAction();
+                this.router.navigate(["/home"]);
+            } else {
+                this.errorMsg = "An error has occurred: " + obj.statusText;
+            }
+        }
+        catch (e) {
+            alert(e.message);
+        }
+    }
+
+    setError(error:any) {
+        this.errorMsg = <any>error._body;
+    }
+
+    showRegistrationPage() {
+        this.commonService.showAccountPage(false);
+    }
+
+    checkLoginStatus() {
+        this.checkLoginEvent.next("checkLoginStatus");
     }
 
 }

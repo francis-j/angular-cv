@@ -3,19 +3,20 @@
         <h2>Register</h2>
     </div>
     <div class="row">
-        <form (submit)="attemptRegister(register)">
-            <span *ngIf="errorMsg.length > 0">{{errorMsg}}</span>
-            <h5>Username</h5>
-            <input type="text" name="username" [(ngModel)]="register.username" />
+        <form novalidate [formGroup]="form" (ngSubmit)="attemptRegister(form)">
+            <span *ngIf="errorMsg.length > 0" class="text-error" [innerHTML]="errorMsg"></span>
+            <h5>Email Address</h5>
+            <input type="email" formControlName="email" ngModel required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"/>
             <h5>Password</h5>
-            <input type="password" name="password" [(ngModel)]="register.password" />
+            <input type="password" formControlName="password" ngModel required minlength="8" maxlength="16"/>
             <h5>Repeat Password</h5>
-            <input type="password" name="password2" [(ngModel)]="register.password2" />
+            <input type="password" formControlName="repeatPassword" ngModel required minlength="8" maxlength="16"/>
             <h5>Full Name</h5>
-            <input type="text" name="name" [(ngModel)]="register.name" />
+            <input type="text" formControlName="name" ngModel required minlength="2" maxlength="64"/>
             <div style="height:20px;"></div>
-            <input type="submit" class="btn btn-primary" value="Register"/>
-            <input type="button" class="btn btn-secondary" value="Cancel" (click)="switchPage()" />
+            <input type="submit" class="btn btn-primary" value="Register" 
+                [disabled]="!form.valid" />
+            <input type="button" class="btn btn-secondary" value="Cancel" (click)="showLoginPage()" />
         </form>
     </div>
 </div>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top" (checkLoginEvent)="checkLoginStatus()">
     <div class="collapse navbar-collapse" id="navbarNav">
         <app-horizontal-list [listItems]="menuItems"></app-horizontal-list>
         <app-horizontal-list class="navbar-right" [listItems]="accountItems"></app-horizontal-list>

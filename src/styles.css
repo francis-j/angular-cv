@@ -18,3 +18,48 @@ a {
     color: currentColor;
     text-decoration: none;
 }
+
+.text-error {
+    color: red;
+    font-weight: bold;
+    font-size: 16pt;
+}
+
+/********************LOGOS*******************/
+.fa-logo-icon {
+    color: red;
+}
+
+/********************SPACERS*******************/
+.v-spacer-5 {
+    margin-left: 5px;
+}
+
+.v-spacer-10 {
+    margin-left: 10px;
+}
+
+/********************THEME*******************/
+.theme-bg-primary {
+    background: black;
+}
+
+.theme-bg-secondary {
+    background: darkgrey;
+}
+
+.theme-font-tertiary {
+    color: white;
+}
+
+.theme-font-primary {
+    color: white;
+}
+
+.theme-font-secondary {
+    color: black;
+}
+
+.theme-font-tertiary {
+    color: red;
+}

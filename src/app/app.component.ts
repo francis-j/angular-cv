@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHelper } from "app/app.api";
 import { MenuItem } from "app/models/MenuItem";
-import { User } from "app/models/User";
 import { Router } from "@angular/router";
 
 @Component({
