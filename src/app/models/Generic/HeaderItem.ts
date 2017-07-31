@@ -1,4 +1,4 @@
-export interface MenuItem  {
+export interface HeaderItem  {
     title: string;
     urlRoute: string;
 }

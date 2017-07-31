@@ -3,8 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
 import { AccountComponent } from './account/account.component';
-import { LogoutComponent } from './logout/logout.component';
-import { LoginComponent } from "app/login/login.component";
+import { LogoutComponent } from './account/logout/logout.component';
+import { LoginComponent } from "./account/login/login.component";
+import { SiteComponent } from "./site/site.component";
+import { CreateComponent } from "./site/create/create.component";
 
 export const router: Routes = [
     {
@@ -22,6 +24,14 @@ export const router: Routes = [
     {
         path:       "logout",
         component:  LogoutComponent
+    },
+    {
+        path:       ":id",
+        component:  SiteComponent
+    },
+    {
+        path:       "site/create",
+        component:  CreateComponent
     }
 ];
 

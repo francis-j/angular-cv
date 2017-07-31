@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import { AccountLogin } from 'app/models/AccountLogin';
+import { AccountLogin } from 'app/models/Account/AccountLogin';
 import { GlobalSettings } from 'app/app.static.values';
 import { HttpHelper } from 'app/app.api';
 import { CommonService } from "app/common.service";

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHelper } from "app/app.api";
-import { MenuItem } from "app/models/MenuItem";
+import { HeaderItem } from "app/models/Generic/HeaderItem";
 import { Router } from "@angular/router";
 
 @Component({
@@ -12,14 +12,10 @@ import { Router } from "@angular/router";
 export class AppComponent implements OnInit {
 
     constructor(private http: HttpHelper, private router:Router) { }
-    menuItems: Array<MenuItem>;
+    menuItems: Array<HeaderItem>;
 
     ngOnInit() {
-
-        if (localStorage.getItem("currentUser")) {
-            this.router.navigate(["/home"]);
-        }
-        else {
+        if (!localStorage.getItem("currentUser")) {
             this.router.navigate(["/account"]);
         }
     }

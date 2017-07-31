@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from "app/models/MenuItem";
 import { Router } from "@angular/router";
 import { CommonService } from "app/common.service";
 
 @Component({
-    selector: 'app-horizontal-list',
+    selector: 'horizontal-list',
     templateUrl: './horizontal-list.component.html',
     styleUrls: ['./horizontal-list.component.css'],
     inputs: ["listItems"]

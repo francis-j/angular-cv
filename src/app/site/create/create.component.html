@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row">
+        <h2>Create a site</h2>
+        <p>Fill out the details below to get started with your site creation.</p>
+    </div>
+    <div class="row">
+        <form novalidate [formGroup]="form" (ngSubmit)="createSite(form)">
+            <span *ngIf="errorMsg.length > 0" class="text-error" [innerHTML]="errorMsg"></span>
+            <h5>Title</h5>
+            <input type="text" formControlName="title" ngModel required/>
+            <h5>Description</h5>
+            <input type="text" formControlName="description" ngModel/>
+            <div style="height:20px;"></div>
+            <input type="submit" class="btn btn-primary" value="Create" 
+                [disabled]="!form.valid" />
+        </form>
+    </div>
+</div>

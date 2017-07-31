@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MenuItem } from "app/models/MenuItem";
+import { HeaderItem } from "app/models/Generic/HeaderItem";
 import { Subscription } from "rxjs/Subscription";
 import { CommonService } from "app/common.service";
 
@@ -9,20 +9,25 @@ import { CommonService } from "app/common.service";
     styleUrls: ['./navigator.component.css']
 })
 export class NavigatorComponent implements OnInit {
-    @Input() menuItems:Array<MenuItem>;
-    accountItems:Array<MenuItem>;
+    @Input() menuItems:Array<HeaderItem>;
+    accountItems:Array<HeaderItem>;
     private loggedIn:boolean;
     private subscription:Subscription;
 
     constructor(private commonService:CommonService) { }
 
     ngOnInit() {
-        this.accountItems = new Array<MenuItem>();
+        this.accountItems = new Array<HeaderItem>();
         this.checkLoginStatus();
 
         this.subscription = this.commonService.loginActionObservable$.subscribe(
             result => this.checkLoginStatus()
         );
+    }
+
+    ngOnDestroy() {
+        if (this.subscription)
+            this.subscription.unsubscribe();
     }
 
     checkLoginStatus() {
@@ -31,7 +36,7 @@ export class NavigatorComponent implements OnInit {
     }
 
     private updateAccountItems() {
-        this.accountItems = new Array<MenuItem>();
+        this.accountItems = new Array<HeaderItem>();
 
         if (this.loggedIn) {
             this.accountItems.push({ 

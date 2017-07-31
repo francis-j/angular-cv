@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AccountRegister } from "app/models/AccountRegister";
+import { AccountRegister } from "app/models/Account/AccountRegister";
 import { Router, NavigationExtras } from "@angular/router";
 import { HttpHelper } from "app/app.api";
 import { FormGroup, FormControl, Validators } from "@angular/forms";

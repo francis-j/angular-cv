@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MenuItem } from "app/models/MenuItem";
+import { HeaderItem } from "app/models/Generic/HeaderItem";
 
 @Component({
     selector: 'app-header',
@@ -8,7 +8,7 @@ import { MenuItem } from "app/models/MenuItem";
 })
 export class HeaderComponent implements OnInit {
 
-    @Input() menuItems:Array<MenuItem>;
+    @Input() menuItems:Array<HeaderItem>;
 
     constructor() { }
 

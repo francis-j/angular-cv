@@ -6,21 +6,26 @@ import { HttpModule } from '@angular/http';
 import { routes } from './app.router';
 
 import { HeaderComponent } from './header/header.component';
-import { HorizontalListComponent } from './horizontal-list/horizontal-list.component';
-import { NavigatorComponent } from './navigator/navigator.component';
+import { HorizontalListComponent } from './generic/horizontal-list/horizontal-list.component';
+import { NavigatorComponent } from './header/navigator/navigator.component';
 import { FooterComponent } from './footer/footer.component';
-import { LoginComponent } from './login/login.component';
-import { FormComponent } from './form/form.component';
-import { FormComponentComponent } from './form-component/form-component.component';
+import { LoginComponent } from './account/login/login.component';
+import { FormComponent } from './generic/form/form.component';
+import { FormComponentComponent } from './generic/form-component/form-component.component';
 import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
-import { LogoutComponent } from './logout/logout.component';
-import { RegisterComponent } from './register/register.component';
+import { LogoutComponent } from './account/logout/logout.component';
+import { RegisterComponent } from './account/register/register.component';
 import { AccountComponent } from './account/account.component';
 
 import { HttpHelper } from "app/app.api";
 import { CommonService } from "app/common.service";
-import { VerticalListComponent } from './vertical-list/vertical-list.component';
+import { VerticalListComponent } from './generic/vertical-list/vertical-list.component';
+import { PopularComponent } from './home/popular/popular.component';
+import { LatestComponent } from './home/latest/latest.component';
+import { ManageComponent } from './account/manage/manage.component';
+import { SiteComponent } from './site/site.component';
+import { CreateComponent } from './site/create/create.component';
 
 
 @NgModule({
@@ -38,7 +43,12 @@ import { VerticalListComponent } from './vertical-list/vertical-list.component';
     LogoutComponent,
     RegisterComponent,
     AccountComponent,
-    VerticalListComponent
+    VerticalListComponent,
+    PopularComponent,
+    LatestComponent,
+    ManageComponent,
+    SiteComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,

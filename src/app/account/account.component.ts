@@ -22,6 +22,11 @@ export class AccountComponent implements OnInit {
         );
     }
 
+    ngOnDestroy() {
+        if (this.subscription)
+            this.subscription.unsubscribe();
+    }
+
     showAccountPage(showLogin:boolean) {
         this.showLogin = showLogin;
     }
