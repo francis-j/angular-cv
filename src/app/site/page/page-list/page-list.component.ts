@@ -16,7 +16,11 @@ export class PageListComponent implements OnInit {
     constructor(private router:Router) { }
 
     ngOnInit() {
-        this.activePage = this.router.parseUrl(this.router.url).root.children.primary.segments[1].path;
+        var urlSegments = this.router.parseUrl(this.router.url).root.children.primary.segments;
+
+        if (urlSegments.length > 1) {
+            this.activePage = urlSegments[1].path;
+        }        
     }
 
     goToPage(id:string) {
