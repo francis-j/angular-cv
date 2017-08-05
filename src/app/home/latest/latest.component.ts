@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, state, trigger, transition, animate, style } from '@angular/core';
 import { Site } from "app/models/Site/Site";
 import { HttpHelper } from "app/app.api";
 import { Router } from "@angular/router";
@@ -6,7 +6,28 @@ import { Router } from "@angular/router";
 @Component({
     selector: 'latest-sites',
     templateUrl: './latest.component.html',
-    styleUrls: ['./latest.component.css']
+    styleUrls: ['./latest.component.css'],
+    animations: [
+        trigger(
+            "animation",
+            [
+                transition(
+                    ":enter",
+                    [
+                        style({ opacity: 0 }),
+                        animate("500ms", style({ opacity: 1 }))
+                    ]
+                ),
+                transition(
+                    ":leave",
+                    [
+                        style({ opacity: 1 }),
+                        animate("0ms", style({ opacity: 0 }))
+                    ]
+                )
+            ]
+        )
+    ]
 })
 export class LatestComponent implements OnInit {
 

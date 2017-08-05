@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routes } from './app.router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { HeaderComponent } from './header/header.component';
 import { HorizontalListComponent } from './generic/horizontal-list/horizontal-list.component';
@@ -64,7 +65,8 @@ import { PageComponent } from './site/page/page.component';
         ReactiveFormsModule,
         HttpModule,
         routes,
-        NgbModule.forRoot()
+        NgbModule.forRoot(),
+        BrowserAnimationsModule
     ],
     providers: [HttpHelper, CommonService, SiteService],
     bootstrap: [AppComponent],
