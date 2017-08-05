@@ -47,8 +47,11 @@ export class LatestComponent implements OnInit {
         this.sites = sites;
     }
 
-    goToSite(id:string) {
-        this.router.navigate(["", id]);
+    goToSite(site:Site) {
+        let siteId = site.id;
+        let pageId = site.pages.length > 0 ? site.pages[0].id : "";
+
+        this.router.navigate(["", siteId, pageId]);
     }
 
 }

@@ -2,7 +2,7 @@
     <h4>Latest Sites</h4>
     <div class="padding-10 margin-10">
         <div class="list-group">
-            <button *ngFor="let site of sites" class="list-group-item list-group-item-action" (click)="goToSite(site.id)">{{site.title}}</button>
+            <button *ngFor="let site of sites" class="list-group-item list-group-item-action" (click)="goToSite(site)">{{site.title}}</button>
         </div>
     </div>
     <a href="/site/create" class="btn btn-default">Create a site</a>
