@@ -1,0 +1,3 @@
+<div class="list-group">
+    <button *ngFor="let page of pages" class="list-group-item list-group-item-action" [ngClass]="{active: page.id == activePage}" (click)="goToPage(page.id)">{{page.title}}</button>
+</div>

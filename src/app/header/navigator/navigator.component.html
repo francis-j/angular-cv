@@ -1,6 +1,11 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top" (checkLoginEvent)="checkLoginStatus()">
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse" (checkLoginEvent)="checkLoginStatus()">
     <div class="collapse navbar-collapse" id="navbarNav">
-        <horizontal-list [listItems]="menuItems"></horizontal-list>
-        <horizontal-list class="navbar-right" [listItems]="accountItems"></horizontal-list>
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <h3 class="header-title text-center"><a href="/"><span class="fa fa-heart fa-logo-icon" aria-hidden="true"></span>auto</a></h3>
+        </div>
+        <div class="col-lg-10 col-md-8 col-sm-6">
+            <horizontal-list [listItems]="menuItems"></horizontal-list>
+            <horizontal-list class="navbar-right" [listItems]="accountItems"></horizontal-list>
+        </div>
     </div>
 </nav>

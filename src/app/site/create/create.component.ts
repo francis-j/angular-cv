@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestOptionsArgs, Headers } from "@angular/http";
-import { SiteCreate } from "app/models/Site/SiteCreate";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Site } from "app/models/Site/Site";
+import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 import { Router, NavigationExtras } from "@angular/router";
 import { HttpHelper } from "app/app.api";
+import { CommonService } from "app/common.service";
+import { Page } from "app/models/Page/Page";
+import { AddPageComponent } from "app/site/create/add-page/add-page.component";
+import { NgbModal, NgbModalOptions } from "@ng-bootstrap/ng-bootstrap";
+import { SiteService } from "app/services/site.service";
+import { Subscription } from "rxjs/Subscription";
 
 @Component({
     selector: 'app-create',
@@ -18,8 +24,13 @@ export class CreateComponent implements OnInit {
     private options: RequestOptionsArgs = { headers: this.headers };
     public form: FormGroup;
     public errorMsg: string;
+    
+    public pages: Array<Page>;
+    private addPageSubscription:Subscription;
+    private updatePageSubscription:Subscription;
 
-    constructor(private router: Router, private httpHelper:HttpHelper) { }
+    constructor(private router: Router, private httpHelper: HttpHelper, private modalService: NgbModal, 
+        private commonService: CommonService, private siteService: SiteService) { }
 
     ngOnInit() {
         this.errorMsg = "";
@@ -27,13 +38,58 @@ export class CreateComponent implements OnInit {
             title: new FormControl("", Validators.required),
             description: new FormControl("", [])
         });
+
+        this.pages = new Array<Page>();
+
+        this.addPageSubscription = this.siteService.pageAddedObservable$.subscribe(
+            result => this.addPage(result),
+            error => this.setError(error)
+        );
+
+        this.updatePageSubscription = this.siteService.pageUpdatedObservable$.subscribe(
+            result => this.updatePage(result),
+            error => this.setError(error)
+        );
+    }
+
+    addPage(page: Page) {
+        this.errorMsg = "";
+        var titleExists = false;
+
+        this.pages.forEach(element => {
+            if (element.title == page.title)
+                titleExists = true;
+        });
+
+        if (titleExists)
+            this.errorMsg = "A page with this title already exists.";
+        else
+            this.pages.push(page);
+    }
+
+    updatePage(pages:Page[]) {
+        this.errorMsg = "";
+        let oldPage = pages[0];
+        let newPage = pages[1];
+
+        let index = this.pages.indexOf(oldPage)
+        
+        if (index >= 0) {
+            this.pages[index] = newPage;
+        }
+    }
+
+    clearPages() {
+        this.pages = new Array<Page>();
     }
 
     createSite(form: FormGroup) {
 
-        var site = new SiteCreate();
+        var site = new Site();
         site.title = form.controls["title"].value;
         site.description = form.controls["description"].value;
+        site.accountId = this.commonService.getAccountId();
+        site.pages = this.pages;
 
         let siteJson = JSON.stringify(site);
         try {
@@ -56,8 +112,8 @@ export class CreateComponent implements OnInit {
             let obj = JSON.parse(result);
             
             if (obj.status == 200) {
-                let body = JSON.parse(obj._body)[0];
-                this.router.navigate(["/site/" + body.id]);
+                let body = JSON.parse(obj._body);
+                this.router.navigate([body.id]);
             } else {
                 this.errorMsg = "An error has occurred: " + obj.statusText;
             }
@@ -70,5 +126,16 @@ export class CreateComponent implements OnInit {
     setError(error:any) {
         this.errorMsg = <any>error._body;
     }
+
+    public openModal(page?:Page) {
+        let options:NgbModalOptions = { windowClass: "in" };
+        const modalRef = this.modalService.open(AddPageComponent, options);
+
+        if (page) {
+            modalRef.componentInstance.page = page;
+        }
+    }
+
+    
 
 }

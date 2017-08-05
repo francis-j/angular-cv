@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { AccountLogin } from 'app/models/Account/AccountLogin';
-import { GlobalSettings } from 'app/app.static.values';
 import { HttpHelper } from 'app/app.api';
 import { CommonService } from "app/common.service";
+import { LocalStorageValues } from "app/common.values";
 
 @Component({
     selector: 'app-login',
@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         this.errorMsg = "";
 
-        if (localStorage.getItem("currentUser")) {
-            this.router.navigate(["/home"]);
+        if (localStorage.getItem(LocalStorageValues.CURRENT_USER)) {
+            this.router.navigate([""]);
         }
     }
 
@@ -51,9 +51,9 @@ export class LoginComponent implements OnInit {
             let obj = JSON.parse(result);
             
             if (obj.status == 200) {
-                localStorage.setItem("currentUser", JSON.stringify(obj));
+                localStorage.setItem(LocalStorageValues.CURRENT_USER, obj._body);
                 this.commonService.processLoginAction();
-                this.router.navigate(["/home"]);
+                this.router.navigate([""]);
             } else {
                 this.errorMsg = "An error has occurred: " + obj.statusText;
             }

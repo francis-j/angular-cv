@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h4 class="modal-title">Add page</h4>
+</div>
+<div class="modal-body">
+    <h5>Title<span class="font-red">*</span></h5>
+    <input type="text" #title value="{{page.title}}" required/>
+    <h5>Description</h5>
+    <input type="text" #description value="{{page.description}}"/>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="savePage(title.value, description.value)">Save</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
+</div>

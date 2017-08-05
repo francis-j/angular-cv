@@ -1,10 +1,10 @@
 import { Component, OnInit, Injectable } from "@angular/core";
 import { Http, Response, Headers, RequestOptionsArgs } from "@angular/http";
-import { GlobalSettings } from "app/app.static.values";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/observable/throw';
+import { CommonValues } from "app/common.values";
 
 @Injectable()
 export class HttpHelper
@@ -17,7 +17,7 @@ export class HttpHelper
     constructor(private http:Http) { }
 
     get(apiRoute:string, id?:string):Observable<any> {
-        let url:string = GlobalSettings.API_URL + apiRoute + (id ? "/" + id : "");
+        let url:string = CommonValues.API_URL + apiRoute + (id ? "/" + id : "");
 
         return this.http
             .get(url, this.options)
@@ -26,7 +26,7 @@ export class HttpHelper
     }
 
     post(apiRoute:string, body:string):Observable<any> {
-        var url:string = GlobalSettings.API_URL + apiRoute;
+        var url:string = CommonValues.API_URL + apiRoute;
 
         return this.http
             .post(url, body, this.options)
@@ -35,7 +35,7 @@ export class HttpHelper
     }
 
     delete(apiRoute:string, id:string):Observable<any> {
-        let url:string = GlobalSettings.API_URL + apiRoute + "/" + id;
+        let url:string = CommonValues.API_URL + apiRoute + "/" + id;
 
         return this.http
             .delete(url, this.options)
@@ -44,7 +44,7 @@ export class HttpHelper
     }
 
     put(apiRoute:string, body:string):Observable<any> {
-        let url:string = GlobalSettings.API_URL + apiRoute;
+        let url:string = CommonValues.API_URL + apiRoute;
 
         return this.http
             .put(url, body, this.options)

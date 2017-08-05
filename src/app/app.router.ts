@@ -10,7 +10,7 @@ import { CreateComponent } from "./site/create/create.component";
 
 export const router: Routes = [
     {
-        path:       "home",
+        path:       "",
         component:  HomeComponent
     },
     {
@@ -26,12 +26,16 @@ export const router: Routes = [
         component:  LogoutComponent
     },
     {
-        path:       ":id",
+        path:       "site/create",
+        component:  CreateComponent
+    },
+    {
+        path:       ":siteId",
         component:  SiteComponent
     },
     {
-        path:       "site/create",
-        component:  CreateComponent
+        path:       ":siteId/:pageId",
+        component:  SiteComponent
     }
 ];
 

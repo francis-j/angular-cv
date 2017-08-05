@@ -1,18 +1,37 @@
 <div class="container">
     <div class="row">
         <h2>Create a site</h2>
+    </div>
+    <div class="row">
         <p>Fill out the details below to get started with your site creation.</p>
     </div>
     <div class="row">
         <form novalidate [formGroup]="form" (ngSubmit)="createSite(form)">
             <span *ngIf="errorMsg.length > 0" class="text-error" [innerHTML]="errorMsg"></span>
-            <h5>Title</h5>
+            <h5>Title<span class="font-red">*</span></h5>
             <input type="text" formControlName="title" ngModel required/>
             <h5>Description</h5>
             <input type="text" formControlName="description" ngModel/>
-            <div style="height:20px;"></div>
-            <input type="submit" class="btn btn-primary" value="Create" 
-                [disabled]="!form.valid" />
+            <div class="spacer"></div>
+            <h4>Pages</h4>
+            <div *ngIf="pages.length == 0; then thenBlock; else elseBlock"></div>
+            <ng-template #thenBlock><p class="text-small"><i>There are currently no pages.</i></p></ng-template>
+            <ng-template #elseBlock>
+                <ul class="list-group">
+                    <li *ngFor="let page of pages" class="list-group-item list-group-item-action" (click)="openModal(page)">{{page.title}}</li>
+                </ul>
+            </ng-template>
+            <div *ngElse>
+                
+            </div>
+            <button type="button" class="btn btn-default" (click)="openModal()">Add</button>
+            <button type="button" class="btn btn-default" (click)="clearPages()">Clear</button>
+            <div class="spacer"></div>
+            <input type="submit" class="btn btn-primary" value="Create" [disabled]="!form.valid" />
         </form>
+    </div>
+    <div class="row">
+        <div class="spacer"></div>
+        <p class="text-v-small"><span class="font-red">*</span> must be unique</p>
     </div>
 </div>

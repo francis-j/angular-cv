@@ -14,11 +14,6 @@ h3 {
     display: inline-block;
 }
 
-a {
-    color: currentColor;
-    text-decoration: none;
-}
-
 .text-error {
     color: red;
     font-weight: bold;
@@ -62,4 +57,78 @@ a {
 
 .theme-font-tertiary {
     color: red;
+}
+
+.font-red {
+    color: red;
+}
+
+.text-v-small {
+    font-size: 8pt;
+}
+
+.text-small {
+    font-size: 10pt;
+}
+
+.text-regular {
+    font-size: 12pt;
+}
+
+.text-large {
+    font-size: 14pt;
+}
+
+.panel {
+    border: 1px solid grey;
+}
+
+.margin-0 {
+    margin: 0;
+}
+
+.margin-5 {
+    margin: 5px;
+}
+
+.margin-10 {
+    margin: 10px;
+}
+
+.padding-0 {
+    padding: 0;
+}
+
+.padding-5 {
+    padding: 5px;
+}
+
+.padding-10 {
+    padding: 10px;
+}
+
+.panel-rounded {
+    border-radius: 15px;
+}
+
+.no-border {
+    border: none;
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.spacer {
+    width: 100%;
+    height: 20px;
+}
+
+.btn {
+    border: 1px solid #ccc;
 }

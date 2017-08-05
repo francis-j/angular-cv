@@ -1,0 +1,33 @@
+.list-group {
+    height: 100%;
+    min-height: 100%;
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
+
+.list-group-item-action {
+    background: #f7eeff;
+    border: 1px solid #fff;
+    border-radius: 15px;
+    color: #555;
+}
+
+.list-group-item-action:hover:not(.active), .list-group-item-action:focus:not(.active) {
+    background: #eedaff;
+    border: 1px solid #fff;
+    color: #555;
+    outline: none;
+}
+
+.active {
+    background: #8000ee;
+    color: #fff;
+}
+
+.active:hover, .active:focus {
+    background: #8000ee;
+    color: #fff;
+    outline: none;
+}

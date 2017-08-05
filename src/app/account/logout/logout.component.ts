@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from "@angular/router";
 import { CommonService } from "app/common.service";
+import { LocalStorageValues } from "app/common.values";
 
 @Component({
     selector: 'app-logout',
@@ -16,7 +17,7 @@ export class LogoutComponent implements OnInit {
     }
 
     processLogout() {
-        localStorage.removeItem("currentUser");
+        localStorage.removeItem(LocalStorageValues.CURRENT_USER);
         this.commonService.processLoginAction();
         this.router.navigate(["/account"]);
     }

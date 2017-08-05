@@ -1,2 +1,9 @@
-<h1>{{site.title}}</h1>
-<p>{{site.description}}</p>
+<div class="margin-0">
+    <site-header [site]="site"></site-header>
+    <div class="col-lg-3 margin-0 padding-0">
+        <page-list [pages]="site.pages" [siteId]="site.id"></page-list>
+    </div>
+    <div class="col-lg-9 margin-0 padding-0">
+        <site-page [page]="page">Loading...</site-page>
+    </div>
+</div>
