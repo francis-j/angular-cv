@@ -132,3 +132,7 @@ h3 {
 .btn {
     border: 1px solid #ccc;
 }
+
+.container {
+    margin: 10px;
+}
