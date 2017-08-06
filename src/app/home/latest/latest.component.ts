@@ -36,7 +36,7 @@ export class LatestComponent implements OnInit {
     constructor(private httpHelper:HttpHelper, private router:Router) { }
 
     ngOnInit() {
-        this.httpHelper.get("site").subscribe(
+        this.httpHelper.get("site/latest/3").subscribe(
             result => this.processSites(result)
         );
     }
