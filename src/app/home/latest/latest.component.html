@@ -1,5 +1,5 @@
-<div *ngIf="sites.length > 0" class="panel panel-rounded padding-10 margin-10" [@animation]>
-    <h4>Latest Sites</h4>
+<div *ngIf="sites.length > 0" class="container panel border-rounded" [@animation]>
+    <h4>Latest Public Sites</h4>
     <div class="padding-10 margin-10">
         <div class="list-group">
             <button *ngFor="let site of sites" class="list-group-item list-group-item-action" (click)="goToSite(site)">{{site.title}}</button>
