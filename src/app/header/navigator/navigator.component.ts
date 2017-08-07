@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HeaderItem } from "app/models/Generic/HeaderItem";
 import { Subscription } from "rxjs/Subscription";
 import { CommonService } from "app/common.service";
+import { LocalStorageValues } from "app/common.values";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-navigator',
@@ -10,11 +12,13 @@ import { CommonService } from "app/common.service";
 })
 export class NavigatorComponent implements OnInit {
     @Input() menuItems:Array<HeaderItem>;
-    accountItems:Array<HeaderItem>;
+    public accountItems:Array<HeaderItem>;
     private loggedIn:boolean;
     private subscription:Subscription;
 
-    constructor(private commonService:CommonService) { }
+    public showNav:boolean;
+
+    constructor(private router:Router, private commonService:CommonService) { }
 
     ngOnInit() {
         this.accountItems = new Array<HeaderItem>();
@@ -23,6 +27,8 @@ export class NavigatorComponent implements OnInit {
         this.subscription = this.commonService.loginActionObservable$.subscribe(
             result => this.checkLoginStatus()
         );
+
+        this.showNav = false;
     }
 
     ngOnDestroy() {
@@ -31,7 +37,7 @@ export class NavigatorComponent implements OnInit {
     }
 
     checkLoginStatus() {
-        this.loggedIn = localStorage.getItem("currentUser") ? true : false;
+        this.loggedIn = localStorage.getItem(LocalStorageValues.CURRENT_USER) ? true : false;
         this.updateAccountItems();
     }
 
@@ -54,5 +60,19 @@ export class NavigatorComponent implements OnInit {
                 urlRoute: "account/register"
             });
         }
+    }
+
+    //Drag events
+    public onDrag(event) {
+        event.dataTransfer.setData("text", event.target.id);
+    }
+
+    public onDrop(event) {
+        event.preventDefault();
+        this.router.navigate(["tv"]);
+    }
+
+    public allowDrop(event) {
+        event.preventDefault();
     }
 }

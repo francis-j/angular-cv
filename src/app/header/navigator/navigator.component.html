@@ -1,11 +1,19 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse" (checkLoginEvent)="checkLoginStatus()">
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="col-lg-2 col-md-4 col-sm-6">
-            <h3 class="header-title text-center"><a href="/"><span class="fa fa-heart fa-logo-icon" aria-hidden="true"></span>auto</a></h3>
-        </div>
-        <div class="col-lg-10 col-md-8 col-sm-6">
-            <horizontal-list [listItems]="menuItems"></horizontal-list>
-            <horizontal-list class="navbar-right" [listItems]="accountItems"></horizontal-list>
-        </div>
+<nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse" (checkLoginEvent)="checkLoginStatus()">
+    <button class="navbar-toggler navbar-toggler-right" type="button" (click)="showNav = !showNav" style="height: 50px;">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="header-title text-huge" href="/"><span class="fa fa-tv fa-logo-icon" (drop)="onDrop($event)" (dragover)="allowDrop($event)" aria-hidden="true"></span></a>
+    <div class="collapse navbar-collapse" id="navbarNav" [ngbCollapse]="!showNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" *ngFor="let menuItem of menuItems">
+                <a class="nav-link" href="/{{menuItem.urlRoute}}">{{menuItem.title}}</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav navbar-right mr-auto">
+            <li class="nav-item" *ngFor="let accountItem of accountItems">
+                <a class="nav-link" href="/{{accountItem.urlRoute}}">{{accountItem.title}}</a>
+            </li>
+        </ul>
     </div>
+    <span class="fa fa-user fa-logo-icon text-huge" draggable="true" (drag)="onDrag($event)"></span>
 </nav>
