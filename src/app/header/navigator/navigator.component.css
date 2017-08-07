@@ -2,7 +2,6 @@
     border-radius: 0px;
     display: flex;
     align-items: center;
-    justify-content: center;
     margin:0;
 }
 
@@ -11,6 +10,11 @@
     display: flex;
     align-items: right;
     justify-content: right;
+}
+
+.navbar-toggler {
+    border: none;
+    outline: none;
 }
 
 #navbarNav {
