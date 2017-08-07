@@ -1,0 +1,8 @@
+<div *ngIf="sites.length > 0" class="container panel border-rounded" [@animation]>
+    <h4>My Sites</h4>
+    <div class="padding-10 margin-10">
+        <div class="list-group">
+            <button *ngFor="let site of sites" class="list-group-item list-group-item-action" (click)="goToSite(site)">{{site.title}}</button>
+        </div>
+    </div>
+</div>

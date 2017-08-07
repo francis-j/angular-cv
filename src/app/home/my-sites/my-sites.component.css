@@ -1,0 +1,16 @@
+.list-group-item {
+    background: #f7eeff;
+    border: 1px solid #fff;
+    border-radius: 15px;
+}
+
+.list-group-item:hover {
+    background: #eedaff;
+    border: 1px solid #fff;
+}
+
+.list-group-item:focus {
+    background: #eedaff;
+    border: 1px solid #fff;
+    outline: none;
+}
