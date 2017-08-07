@@ -32,6 +32,8 @@ import { HttpHelper } from "app/app.api";
 import { CommonService } from "app/common.service";
 import { SiteService } from "app/services/site.service";
 import { PageComponent } from './site/page/page.component';
+import { MySitesComponent } from './home/my-sites/my-sites.component';
+import { TvComponent } from './tv/tv.component';
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import { PageComponent } from './site/page/page.component';
         SiteHeaderComponent,
         PageListComponent,
         AddPageComponent,
-        PageComponent
+        PageComponent,
+        MySitesComponent,
+        TvComponent
     ],
     imports: [
         BrowserModule,

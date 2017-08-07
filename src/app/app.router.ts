@@ -7,6 +7,7 @@ import { LogoutComponent } from './account/logout/logout.component';
 import { LoginComponent } from "./account/login/login.component";
 import { SiteComponent } from "./site/site.component";
 import { CreateComponent } from "./site/create/create.component";
+import { TvComponent } from "app/tv/tv.component";
 
 export const router: Routes = [
     {
@@ -16,6 +17,14 @@ export const router: Routes = [
     {
         path:       "error",
         component:  ErrorComponent
+    },
+    {
+        path:       "account/login", 
+        component:  AccountComponent
+    },
+    {
+        path:       "account/register", 
+        component:  AccountComponent
     },
     {
         path:       "account", 
@@ -28,6 +37,10 @@ export const router: Routes = [
     {
         path:       "site/create",
         component:  CreateComponent
+    },
+    {
+        path:       "tv",
+        component:  TvComponent
     },
     {
         path:       ":siteId",
