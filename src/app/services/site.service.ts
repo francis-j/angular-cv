@@ -1,5 +1,5 @@
 import { Subject } from "rxjs/Subject";
-import { Page } from "app/models/Page/Page";
+import { Page } from "app/models/Site/Page";
 
 export class SiteService {
 

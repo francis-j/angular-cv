@@ -14,3 +14,18 @@
     border: 1px solid #fff;
     outline: none;
 }
+
+button:focus {
+    outline: none;
+}
+
+.btn-edit {
+    border: none;
+    background: none;
+    height: 30px;
+    width: 30px;
+}
+
+.btn-edit:hover {
+    color: red;
+}

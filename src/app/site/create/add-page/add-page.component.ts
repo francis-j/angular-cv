@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap'
-import { Page } from "app/models/Page/Page";
+import { Page } from "app/models/Site/Page";
 import { SiteService } from "app/services/site.service";
+import { Section } from "app/models/Site/Section";
 
 @Component({
     selector: 'add-page-modal',
@@ -18,7 +19,7 @@ export class AddPageComponent implements OnInit {
 
     ngOnInit() {
         if (!this.page) {
-            this.page = new Page("", "");
+            this.page = new Page("", "", new Array<Section>());
             this.hasNewPage = true;
         }
         else {
@@ -26,8 +27,8 @@ export class AddPageComponent implements OnInit {
         }
     }
 
-    savePage(title:string, description:string) {
-        var page = new Page(title, description);
+    savePage(title:string, description:string, sections:Array<Section>) {
+        var page = new Page(title, description, sections);
 
         if (this.hasNewPage) {
             this.siteService.savePage(page);

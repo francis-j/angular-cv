@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, state, style, transition, animate, trigger } from '@angular/core';
 import { Router } from "@angular/router";
-import { Page } from "app/models/Page/Page";
+import { Page } from "app/models/Site/Page";
 
 @Component({
     selector: 'page-list',

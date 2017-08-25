@@ -3,7 +3,8 @@ import { HttpHelper } from "app/app.api";
 import { Site } from "app/models/Site/Site";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { Subscription } from "rxjs/Subscription";
-import { Page } from "app/models/Page/Page";
+import { Page } from "app/models/Site/Page";
+import { Section } from "app/models/Site/Section";
 
 @Component({
     selector: 'app-site',
@@ -23,7 +24,7 @@ export class SiteComponent implements OnInit {
             (params:Params) => this.getSite(params["siteId"], params["pageId"])
         );
 
-        this.page = new Page("", "");
+        this.page = new Page("", "", new Array<Section>());
     }
 
     ngOnDestroy() {

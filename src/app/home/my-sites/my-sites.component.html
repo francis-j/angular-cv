@@ -1,8 +1,24 @@
 <div *ngIf="sites.length > 0" class="container panel border-rounded" [@animation]>
-    <h4>My Sites</h4>
-    <div class="padding-10 margin-10">
-        <div class="list-group">
-            <button *ngFor="let site of sites" class="list-group-item list-group-item-action" (click)="goToSite(site)">{{site.title}}</button>
+    <div class="row">
+        <div class="col col-lg-8">
+            <h4>My Sites</h4>
+        </div>
+        <div class="col col-lg-4 text-right">
+            <button class="btn-edit fa fa-pencil" (click)="editMode = !editMode"></button>
+        </div>
+    </div>
+    <div *ngIf="editMode && errorMsg.length > 0" class="row">
+        <p>{{errorMsg}}</p>
+    </div>
+    <div class="row">
+        <div class="padding-10 margin-10 width-100">
+            <div class="list-group">
+                <div *ngFor="let site of sites">
+                    <button class="list-group-item list-group-item-action" (click)="goToSite(site)">{{site.title}}</button>
+                    <button *ngIf="editMode" class="btn btn-secondary" (click)="editSite(site)">Edit</button>
+                    <button *ngIf="editMode" class="btn btn-danger" (click)="deleteSite(site)">Delete</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

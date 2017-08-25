@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 import { Router, NavigationExtras } from "@angular/router";
 import { HttpHelper } from "app/app.api";
 import { CommonService } from "app/common.service";
-import { Page } from "app/models/Page/Page";
+import { Page } from "app/models/Site/Page";
 import { AddPageComponent } from "app/site/create/add-page/add-page.component";
 import { NgbModal, NgbModalOptions } from "@ng-bootstrap/ng-bootstrap";
 import { SiteService } from "app/services/site.service";
