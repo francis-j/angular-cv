@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { RequestOptionsArgs, Headers } from "@angular/http";
 import { Site } from "app/models/Site/Site";
 import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
-import { Router, NavigationExtras } from "@angular/router";
+import { Router, NavigationExtras, ActivatedRoute, Params } from "@angular/router";
 import { HttpHelper } from "app/app.api";
 import { CommonService } from "app/common.service";
 import { Page } from "app/models/Site/Page";
@@ -18,6 +18,9 @@ import { Subscription } from "rxjs/Subscription";
 })
 export class CreateComponent implements OnInit {
 
+    private site:Site;
+    private subscription:Subscription;
+
     private headers: Headers = new Headers({
         "Content-Type": "application/json"
     });
@@ -29,17 +32,22 @@ export class CreateComponent implements OnInit {
     private addPageSubscription:Subscription;
     private updatePageSubscription:Subscription;
 
-    constructor(private router: Router, private httpHelper: HttpHelper, private modalService: NgbModal, 
+    constructor(private route:ActivatedRoute, private router: Router, private httpHelper: HttpHelper, private modalService: NgbModal, 
         private commonService: CommonService, private siteService: SiteService) { }
 
     ngOnInit() {
         this.errorMsg = "";
+
         this.form = new FormGroup({
             title: new FormControl("", Validators.required),
             description: new FormControl("", [])
         });
 
         this.pages = new Array<Page>();
+        
+        this.subscription = this.route.params.subscribe(
+            (params:Params) => this.getSite(params["siteId"])
+        );
 
         this.addPageSubscription = this.siteService.pageAddedObservable$.subscribe(
             result => this.addPage(result),
@@ -50,6 +58,31 @@ export class CreateComponent implements OnInit {
             result => this.updatePage(result),
             error => this.setError(error)
         );
+    }
+
+    private getSite(siteId:string) {
+        if (siteId) {
+            this.httpHelper.get("site", siteId).subscribe(
+                result => this.processSite(result),
+                error => this.showError(error)
+            );
+        }
+    }
+
+    private processSite(result:any) {
+        this.site = JSON.parse(JSON.parse(result)._body)[0];
+
+        if (this.site)
+            this.populateSiteForm();
+    }
+    
+    private populateSiteForm() {
+        this.form = new FormGroup({
+            title: new FormControl(this.site.title, Validators.required),
+            description: new FormControl(this.site.description, [])
+        });
+
+        this.pages = this.site.pages;
     }
 
     addPage(page: Page) {
@@ -85,7 +118,7 @@ export class CreateComponent implements OnInit {
 
     createSite(form: FormGroup) {
 
-        var site = new Site();
+        var site = this.site ? this.site : new Site();
         site.title = form.controls["title"].value;
         site.description = form.controls["description"].value;
         site.accountId = this.commonService.getAccountId();
@@ -93,16 +126,28 @@ export class CreateComponent implements OnInit {
 
         let siteJson = JSON.stringify(site);
         try {
-            this.httpHelper
-                .post("site", siteJson)
-                .subscribe(
-                    result => this.processResult(result),
-                    error => this.setError(error)
-                );
+
+            if (this.site) {
+                this.httpHelper
+                    .put("site", site.id, siteJson)
+                    .subscribe(
+                        result => this.processResult(result),
+                        error => this.setError(error)
+                    );
+            }
+            else {
+                this.httpHelper
+                    .post("site", siteJson)
+                    .subscribe(
+                        result => this.processResult(result),
+                        error => this.setError(error)
+                    );
+            }
+            
         }
         catch (e) {
             let extras: NavigationExtras = [{ "Message": e.message }];
-            this.router.navigate(["/error"], extras)
+            this.router.navigate(["error"], extras)
             alert(e.message);
         }
     }
@@ -136,6 +181,8 @@ export class CreateComponent implements OnInit {
         }
     }
 
-    
+    private showError(code:Number) {
+        this.router.navigate(["error", code]);
+    }
 
 }
