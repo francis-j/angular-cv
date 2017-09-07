@@ -19,6 +19,10 @@ export const router: Routes = [
         component:  ErrorComponent
     },
     {
+        path:       "error/:code",
+        component:  ErrorComponent
+    },
+    {
         path:       "account/login", 
         component:  AccountComponent
     },
@@ -36,6 +40,10 @@ export const router: Routes = [
     },
     {
         path:       "site/create",
+        component:  CreateComponent
+    },
+    {
+        path:       "site/edit/:siteId",
         component:  CreateComponent
     },
     {
