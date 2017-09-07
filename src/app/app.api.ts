@@ -43,8 +43,8 @@ export class HttpHelper
             .catch(this.logError);
     }
 
-    put(apiRoute:string, body:string):Observable<any> {
-        let url:string = CommonValues.API_URL + apiRoute;
+    put(apiRoute:string, id:string, body:string):Observable<any> {
+        let url:string = CommonValues.API_URL + apiRoute + "/" + id;
 
         return this.http
             .put(url, body, this.options)
