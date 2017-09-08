@@ -1,3 +1,22 @@
 .customModal {
     margin-top: 50px;
 }
+
+.list-group {
+    margin: 10px 0 10px 0;
+}
+
+.list-group-item {
+    background: #6d6d6d;
+    color: white;
+    border: none;
+}
+
+.list-group-item:hover {
+    background: #5d5d5d;
+}
+
+.btn-save {
+    margin: 0 auto;
+    text-align: center;
+}

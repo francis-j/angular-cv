@@ -1,22 +1,22 @@
 .list-group {
     height: 100%;
     min-height: 100%;
-    margin: 10px;
+    margin: 10px 10px 10px 0;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
+    background: #2d2d2d;
+    border-radius: 0 15px 15px 0;
 }
 
 .list-group-item-action {
     background: #f7eeff;
-    border: 1px solid #fff;
     border-radius: 15px;
     color: #555;
+    margin-bottom: 3px;
+    border: none;
 }
 
 .list-group-item-action:hover:not(.active), .list-group-item-action:focus:not(.active) {
     background: #eedaff;
-    border: 1px solid #fff;
     color: #555;
     outline: none;
 }
@@ -27,7 +27,7 @@
 }
 
 .active:hover, .active:focus {
-    background: #8000ee;
+    background: #7000D2;
     color: #fff;
     outline: none;
 }

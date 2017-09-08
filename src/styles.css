@@ -3,13 +3,15 @@
 
 html {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: #4d4d4d;
 }
 
 body {
     margin: 0;
+    background: #4d4d4d;
 }
 
-h3 {
+h2, h3 {
     margin: auto 0 auto 0;
     display: inline-block;
 }
@@ -124,13 +126,21 @@ h3 {
     width: 100%;
 }
 
+.width-50 {
+    width: 50%;
+}
+
+.width-25 {
+    width: 25%;
+}
+
 .spacer {
     width: 100%;
     height: 20px;
 }
 
 .btn {
-    border: 1px solid #ccc;
+    border: none;
 }
 
 .btn-none {
@@ -157,11 +167,33 @@ h3 {
 }
 
 .panel {
-    border: 1px solid grey;
     height: 100%;
     width: 100%;
+    background: #2d2d2d;
 }
 
 .border-rounded {
     border-radius: 15px;
+}
+
+input[type=text], input[type=password], input[type=email] {
+    border-radius: 5px;
+    border: none;
+    background: #ddd;
+    color: #333;
+    padding: 5px;
+}
+
+.list-group {
+    margin: 0;
+}
+
+.modal-content {
+    background: #4d4d4d;
+    color: #fafafa;
+    border-radius: 15px;
+}
+
+.modal-header {
+    border-radius: 15px 15px 0 0;
 }

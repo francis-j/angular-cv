@@ -1,0 +1,15 @@
+.home-menu-bar {
+    background: #2a4968;
+    border-radius: 15px;
+    margin: 0;
+}
+
+.home-menu-button {
+    background: #1b3044;
+    border: none;
+    color: white;
+}
+
+.home-menu-button:hover {
+    background: #142332;
+}

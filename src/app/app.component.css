@@ -1,14 +1,16 @@
 .site-content {
+    font-family: sans-serif;
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background: #f1f1fc;
 }
 
 .content {
     flex: 1 0 auto;
     max-width: 1000px;
     margin: 10px auto;
-    background: white;
+    background: #3d3d3d;
     border-radius: 15px;
+    border-color: #2d2d2d;
+    color: #dadada;
 }
