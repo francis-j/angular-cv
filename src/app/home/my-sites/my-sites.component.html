@@ -1,16 +1,9 @@
 <div *ngIf="sites.length > 0" class="container panel border-rounded" [@animation]>
-    <div class="row">
-        <h4>My Sites</h4>
-    </div>
-    <div *ngIf="errorMsg.length > 0" class="row">
-        <p>{{errorMsg}}</p>
-    </div>
-    <div class="row">
-        <div class="padding-10 margin-10 width-100">
-            <div class="list-group">
-                <div *ngFor="let site of sites">
-                    <button class="list-group-item list-group-item-action" (click)="goToSite(site)">{{site.title}}</button>
-                </div>
+    <h4>My Sites</h4>
+    <div class="padding-10 margin-10">
+        <div class="list-group">
+            <div *ngFor="let site of sites">
+                <button class="list-group-item list-group-item-action" (click)="goToSite(site)">{{site.title}}</button>
             </div>
         </div>
     </div>
