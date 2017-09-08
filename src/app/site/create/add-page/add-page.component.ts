@@ -27,8 +27,8 @@ export class AddPageComponent implements OnInit {
         }
     }
 
-    savePage(title:string, description:string, sections:Array<Section>) {
-        var page = new Page(title, description, sections);
+    savePage(title:string, description:string) {
+        var page = new Page(title, description, new Array<Section>());
 
         if (this.hasNewPage) {
             this.siteService.savePage(page);
