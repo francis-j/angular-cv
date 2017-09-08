@@ -5,5 +5,6 @@ export class Site {
     title:string;
     description:string;
     accountId:string;
+    accessKey:string;
     pages:Array<Page>;
 }

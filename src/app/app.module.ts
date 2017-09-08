@@ -23,7 +23,6 @@ import { LatestComponent } from './home/latest/latest.component';
 import { ManageComponent } from './account/manage/manage.component';
 import { SiteComponent } from './site/site.component';
 import { CreateComponent } from './site/create/create.component';
-import { ModalComponent } from './generic/modal/modal.component';
 import { SiteHeaderComponent } from './site/site-header/site-header.component';
 import { PageListComponent } from './site/page/page-list/page-list.component';
 import { AddPageComponent } from './site/create/add-page/add-page.component';
@@ -34,6 +33,9 @@ import { SiteService } from "app/services/site.service";
 import { PageComponent } from './site/page/page.component';
 import { MySitesComponent } from './home/my-sites/my-sites.component';
 import { TvComponent } from './tv/tv.component';
+import { UnlockSiteComponent } from './site/unlock-site/unlock-site.component';
+import { ConfirmationModalComponent } from './generic/confirmation-modal/confirmation-modal.component';
+import { NotificationModalComponent } from './generic/notification-modal/notification-modal.component';
 
 
 @NgModule({
@@ -55,13 +57,15 @@ import { TvComponent } from './tv/tv.component';
         ManageComponent,
         SiteComponent,
         CreateComponent,
-        ModalComponent,
         SiteHeaderComponent,
         PageListComponent,
         AddPageComponent,
         PageComponent,
         MySitesComponent,
-        TvComponent
+        TvComponent,
+        UnlockSiteComponent,
+        ConfirmationModalComponent,
+        NotificationModalComponent
     ],
     imports: [
         BrowserModule,
@@ -74,6 +78,6 @@ import { TvComponent } from './tv/tv.component';
     ],
     providers: [HttpHelper, CommonService, SiteService],
     bootstrap: [AppComponent],
-    entryComponents: [AddPageComponent]
+    entryComponents: [AddPageComponent, UnlockSiteComponent, ConfirmationModalComponent, NotificationModalComponent]
 })
 export class AppModule { }

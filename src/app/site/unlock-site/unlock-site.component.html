@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h4 class="modal-title">Enter Access Key</h4>
+</div>
+<div class="modal-body">
+    <div *ngIf="errorMsg.length > 0" class="row text-error">
+        <p>{{errorMsg}}</p>
+    </div>
+    <input class="width-100" type="text" #code value="" required/>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="validateCode(code.value)">Continue</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
+</div>

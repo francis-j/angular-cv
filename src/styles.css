@@ -133,6 +133,20 @@ h3 {
     border: 1px solid #ccc;
 }
 
+.btn-none {
+    border: none;
+    background: none;
+}
+
+.btn-none:active,
+.btn-none:focus,
+.btn-none:active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 .container {
     padding: 10px;
 }

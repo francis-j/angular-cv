@@ -1,8 +1,28 @@
-<div class="site-header padding-10">
-    <div class="col-lg-6 col-centered text-center">
-        <h1 class="margin-0">{{site.title}}</h1>
+<div class="site-header padding-10 border-rounded">
+    <div class="col-lg-2 right">
+        <button *ngIf="isSiteLocked"
+            class="btn btn-none fa fa-lock" 
+            (mouseover)="showLock=false" 
+            (mouseleave)="showLock=true" 
+            (click)="requestAccessKey()"
+            [class.fa-lock]="showLock" 
+            [class.fa-unlock]="!showLock">
+        </button>
+        <button *ngIf="!isSiteLocked"
+            class="btn btn-none fa fa-pencil" 
+            (click)="editSite(site.id)">
+        </button>
+        <button *ngIf="!isSiteLocked"
+            class="btn btn-none fa fa-trash" 
+            (click)="requestDelete(site.id)">
+        </button>
     </div>
-    <div class="text-center">
-        <p>{{site.description}}</p>
+    <div class="col-lg-8 col-centered text-center">
+        <div>
+            <h1 class="margin-0">{{site.title}}</h1>
+        </div>
+        <div>
+            <p>{{site.description}}</p>
+        </div>
     </div>
 </div>
