@@ -10,6 +10,7 @@ import { AddPageComponent } from "app/site/create/add-page/add-page.component";
 import { NgbModal, NgbModalOptions } from "@ng-bootstrap/ng-bootstrap";
 import { SiteService } from "app/services/site.service";
 import { Subscription } from "rxjs/Subscription";
+import { NotificationModalComponent } from "app/generic/notification-modal/notification-modal.component";
 
 @Component({
     selector: 'app-create',
@@ -159,6 +160,10 @@ export class CreateComponent implements OnInit {
             if (obj.status == 200) {
                 let body = JSON.parse(obj._body);
                 this.router.navigate([body.id]);
+                
+                let options:NgbModalOptions = { windowClass: "in" };
+                const modal = this.modalService.open(NotificationModalComponent, options);
+                modal.componentInstance.message = "Site Access Key: " + body.accessKey;
             } else {
                 this.errorMsg = "An error has occurred: " + obj.statusText;
             }
