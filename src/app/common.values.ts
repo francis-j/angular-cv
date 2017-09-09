@@ -1,5 +1,7 @@
+import { environment } from "environments/environment";
+
 export class CommonValues {
-    static API_URL:string = "http://fj-site-concept-api.azurewebsites.net/api/";
+    static API_URL:string = environment.apiUrl;
 }
 
 export class LocalStorageValues {

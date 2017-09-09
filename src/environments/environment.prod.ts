@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+    production: true,
+    apiUrl: "http://fj-site-concept-api.azurewebsites.net/api/"
 };
