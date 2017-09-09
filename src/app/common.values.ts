@@ -1,5 +1,5 @@
 export class CommonValues {
-    static API_URL:string = "http://localhost:5000/api/";
+    static API_URL:string = "http://fj-site-concept-api.azurewebsites.net/api/";
 }
 
 export class LocalStorageValues {

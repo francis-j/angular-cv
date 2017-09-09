@@ -959,7 +959,7 @@ var CommonValues = (function () {
     return CommonValues;
 }());
 
-CommonValues.API_URL = "http://localhost:5000/api/";
+CommonValues.API_URL = "http://fj-site-concept-api.azurewebsites.net/api/";
 var LocalStorageValues = (function () {
     function LocalStorageValues() {
     }
