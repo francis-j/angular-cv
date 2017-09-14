@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpHelper } from "app/app.api";
 import { HeaderItem } from "app/models/Generic/HeaderItem";
 import { Router } from "@angular/router";
-import { LocalStorageValues } from "app/common.values";
+import { SessionStorageValues } from "app/common.values";
+import { Account } from "app/models/account/account";
 
 @Component({
     selector: 'app-root',
@@ -16,8 +17,17 @@ export class AppComponent implements OnInit {
     menuItems: Array<HeaderItem>;
 
     ngOnInit() {
-        if (!localStorage.getItem(LocalStorageValues.CURRENT_USER)) {
+        if (!sessionStorage.getItem(SessionStorageValues.CURRENT_USER)) {
             this.router.navigate(["/account"]);
+        }
+        else {
+            let account:Account = JSON.parse(sessionStorage.getItem(SessionStorageValues.CURRENT_USER));
+
+            var limit = new Date().getTime() - 18000000; //5 hours
+            if (new Date(account.timestamp).getTime() - limit < 0) {
+                sessionStorage.removeItem(SessionStorageValues.CURRENT_USER);
+                this.router.navigate(["/account"]);
+            }
         }
     }
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
+import { Account } from 'app/models/Account/Account';
 import { AccountLogin } from 'app/models/Account/AccountLogin';
 import { HttpHelper } from 'app/app.api';
 import { CommonService } from "app/common.service";
-import { LocalStorageValues } from "app/common.values";
+import { SessionStorageValues } from "app/common.values";
 
 @Component({
     selector: 'app-login',
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         this.errorMsg = "";
 
-        if (localStorage.getItem(LocalStorageValues.CURRENT_USER)) {
+        if (sessionStorage.getItem(SessionStorageValues.CURRENT_USER)) {
             this.router.navigate([""]);
         }
     }
@@ -48,10 +49,15 @@ export class LoginComponent implements OnInit {
 
     processLogin(result:string) {
         try {
-            let obj = JSON.parse(result);
+            var obj = JSON.parse(result);
             
             if (obj.status == 200) {
-                localStorage.setItem(LocalStorageValues.CURRENT_USER, obj._body);
+                let body = obj._body;
+                var account = JSON.parse(body);
+                delete account.password;
+                account.timestamp = new Date();
+                
+                sessionStorage.setItem(SessionStorageValues.CURRENT_USER, JSON.stringify(account));
                 this.commonService.processLoginAction();
                 this.router.navigate([""]);
             } else {

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HeaderItem } from "app/models/Generic/HeaderItem";
 import { Subscription } from "rxjs/Subscription";
 import { CommonService } from "app/common.service";
-import { LocalStorageValues } from "app/common.values";
+import { SessionStorageValues } from "app/common.values";
 import { Router } from "@angular/router";
 
 @Component({
@@ -37,7 +37,7 @@ export class NavigatorComponent implements OnInit {
     }
 
     checkLoginStatus() {
-        this.loggedIn = localStorage.getItem(LocalStorageValues.CURRENT_USER) ? true : false;
+        this.loggedIn = sessionStorage.getItem(SessionStorageValues.CURRENT_USER) ? true : false;
         this.updateAccountItems();
     }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, state, trigger, transition, animate, style } from '@angular/core';
-import { LocalStorageValues } from "app/common.values";
+import { SessionStorageValues } from "app/common.values";
 
 @Component({
     selector: 'app-home',
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     }
 
     isUserLoggedIn(): boolean {
-        if (localStorage.getItem(LocalStorageValues.CURRENT_USER)) {
+        if (sessionStorage.getItem(SessionStorageValues.CURRENT_USER)) {
             return true;
         }
         return false;

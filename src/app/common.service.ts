@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { LocalStorageValues } from "app/common.values";
+import { SessionStorageValues } from "app/common.values";
 
 @Injectable()
 export class CommonService {
@@ -20,7 +20,7 @@ export class CommonService {
     constructor() { }
 
     public getAccountId() {
-        let account: Account = JSON.parse(localStorage.getItem(LocalStorageValues.CURRENT_USER));
+        let account: Account = JSON.parse(sessionStorage.getItem(SessionStorageValues.CURRENT_USER));
 
         return account.id;
     }
