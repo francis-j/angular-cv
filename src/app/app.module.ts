@@ -36,6 +36,7 @@ import { TvComponent } from './tv/tv.component';
 import { UnlockSiteComponent } from './site/unlock-site/unlock-site.component';
 import { ConfirmationModalComponent } from './generic/confirmation-modal/confirmation-modal.component';
 import { NotificationModalComponent } from './generic/notification-modal/notification-modal.component';
+import { ManageSitesComponent } from './account/manage/manage-sites/manage-sites.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { NotificationModalComponent } from './generic/notification-modal/notific
         TvComponent,
         UnlockSiteComponent,
         ConfirmationModalComponent,
-        NotificationModalComponent
+        NotificationModalComponent,
+        ManageSitesComponent
     ],
     imports: [
         BrowserModule,

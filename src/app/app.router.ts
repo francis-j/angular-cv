@@ -8,6 +8,7 @@ import { LoginComponent } from "./account/login/login.component";
 import { SiteComponent } from "./site/site.component";
 import { CreateComponent } from "./site/create/create.component";
 import { TvComponent } from "app/tv/tv.component";
+import { ManageComponent } from 'app/account/manage/manage.component';
 
 export const router: Routes = [
     {
@@ -29,6 +30,10 @@ export const router: Routes = [
     {
         path:       "account/register", 
         component:  AccountComponent
+    },
+    {
+        path:       "account/manage",
+        component:  ManageComponent
     },
     {
         path:       "account", 

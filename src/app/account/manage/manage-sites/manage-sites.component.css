@@ -1,0 +1,34 @@
+.list-group-item {
+    background: #f7eeff;
+    border-radius: 15px;
+    margin-bottom: 2px;
+}
+
+.list-group-item-code, .list-group-item-code:focus {
+    background: #5555aa;
+    color: white;
+    font-size: 9pt;
+    text-align: center;
+    border: none;    
+    outline: none;
+}
+
+.list-group-item-code:hover, .list-group-item-code:active {
+    background: #5555bb;
+    color: white;
+}
+
+.site-title, .site-title:focus {
+    background: #dd6666;
+    color: white;
+    font-size: 9pt;
+    border: none;
+    border-radius: 15px;
+    margin: 0 0 2px 0;
+    outline: none;
+}
+
+.site-title:hover, .site-title:active {
+    background: #ee6666;
+    color: white;
+}
